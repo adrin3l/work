@@ -1,0 +1,48 @@
+#badge_title{
+
+	text-align: center;
+	margin-bottom:5px;
+	
+}
+
+#copy{
+ 	background: url("../images/button_right.png") no-repeat scroll right top transparent;
+    color: #000000;
+    display: block;
+    float: right;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    height: 34px;
+    padding-right: 20px;
+    text-decoration: none;
+    margin-top: 3px;
+}
+
+#copy span{
+
+	background: url("../images/button_left.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    line-height: 22px;
+    padding: 7px 0 5px 18px;
+}
+
+#copy_code{
+	margin-top: 3px;
+}
+#activate_popup{
+
+	float:right;	
+	margin-top: 3px;
+}
+
+#popup_text{
+
+	width: 250px;	
+	margin-top: 3px;  
+    padding: 10px;
+	text-align: center;
+	border: 3px dashed #ccc;
+	float:right;
+}
+
