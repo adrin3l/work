@@ -311,10 +311,10 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 	<p>
 		<label> Code:</label>
 		<input type="text" class="widefat" id="<?php echo $this->get_field_id('code_class'); ?>" name="<?php echo $this->get_field_name('code_class'); ?>" value="<?php echo $code_class; ?>" />
-	</p>
+	<!-- </p>
 		<label> Button: </label>
 		<input type="text" class="widefat" id="<?php echo $this->get_field_id('button_class'); ?>" name="<?php echo $this->get_field_name('button_class'); ?>" value="<?php echo $button_class; ?>" />
-	<p>
+	<p> -->
 		<label> Question: </label>
 		<input type="text"  class="widefat" id="<?php echo $this->get_field_id('question_class'); ?>" name="<?php echo $this->get_field_name('question_class'); ?>" value="<?php echo $question_class; ?>" />
 	</p>
@@ -377,6 +377,41 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 		$badges_arr = get_posts($args);
 
 		echo $before_widget;
+
+		echo $before_title;
+	  		echo "<span class='$title_class badge_title'>";
+			//echo $badge->post_title;
+  			if($use_dropdown == '1'){
+
+	  			?>
+
+	  				<select name="badges" id="badges" >
+	  					<?php
+
+	  						foreach($badges_arr as $sbadge){
+
+	  							if($sbadge->ID == $badge_selected){
+	  								$selected = 'selected="selected"';
+	  							}else{
+	  								$selected = '';
+	  							}
+	  							echo "<option value='$sbadge->ID' $selected > $sbadge->post_title </option>";
+	  						}
+
+	  					?>
+
+	  				</select>
+
+	  			<?php
+	  		}else{
+
+
+	  			echo get_the_title($badge_selected); 
+	  		}
+	  		echo "</span>";
+			echo $after_title;
+
+
 		foreach($badges_arr as $badge){	
 
 
@@ -390,61 +425,39 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 			$url_options = get_post_meta($badge->ID,'url_options',true);
 			$popup_text = get_post_meta($badge->ID, 'popup_text',true);
 
-
-
 			?>
-				<div id="badge-<?php echo $badge->ID;?>" <?php if($badge->ID != $badge_selected) echo "style='display:none;'" ?> >
+				<ul class="badges_box" id="badge-<?php echo $badge->ID;?>" <?php if($badge->ID != $badge_selected) echo "style='display:none;'" ?> >
 
-			<?php
-			echo $before_title;
-	  		echo "<span class='$title_class'>";
-			//echo $badge->post_title;
-	  			?>
-	  				<select name="badges" id="badges" >
-	  					<?php
+					<li>
+					 	<img class='<?php echo $image_class; ?> ' src='<?php echo $thumb_url; ?>' title='<?php echo $badge->post_title;?>' alt='<?php echo $badge->post_title; ?>'/>
+					 </li>
 
-	  						foreach($badges_arr as $sbadge){
-
-	  							if($sbadge->ID == $badge_selected){
-	  								$selected = 'selected="selected"';
-	  							}else{
-	  								$selected = '';
-	  							}
-
-
-	  							echo "<option value='$sbadge->ID' $selected > $sbadge->post_title </option>";
-	  						}
-
-	  					?>
-
-	  				</select>
-
-	  			<?php
-
-	  		echo "</span>";
-			echo $after_title;	
-
-			echo "<img class='$image_class' src='$thumb_url' title='badge->post_title' alt='badge->post_title'/>";
-				?>
-	   
-					<textarea class='<?php echo $code_class;?>' style="width:100%;" rows="5" id="copy_code" name="copy_code"> <a rel="<?php echo $url_options?>" href="<?php echo $url;?>"><img src="<?php echo $thumb_url;?>" /> </a> </textarea>
-					<a class="button <?php echo $button_class;?>"  id="copy" name="copy" href="#copy_code" /><span>Click to copy code</span></a>
-					<a href="#popup_text" id="activate_popup" name="activate_popup" class="<?php echo $question_class;?>"> Where to paste ? </a>
-					<div id="popup_text" style="display:none;" class="<?php echo $popup_class;?>">
-					 <?php echo $popup_text; ?> 
-					</div>
-
-				</div>
+					 <li>
+						<textarea class='<?php echo $code_class;?> code' copycode="<?php echo $badge->ID;?>" rows="5" id="copy_code-<?php echo $badge->ID;?>" name="copy_code"> <a rel="<?php echo $url_options?>" href="<?php echo $url;?>"><img src="<?php echo $thumb_url;?>" /> </a> </textarea>
+					</li>	
+						<!-- <a class="button <?php echo $button_class;?>"  id="copy-<?php echo $badge->ID;?>" copy = "<?php echo $badge->ID?>" name="copy" href="#copy_code" /><span>Click to copy code</span></a> -->
+					<li>	
+						<a href="#popup_text" id="activate_popup" name="activate_popup" badge-id="<?php echo $badge->ID;?>" class="activate_popup <?php echo $question_class;?>"> Where to paste ? </a>
+					</li>
+					<li>	
+						<div id="popup_text-<?php echo $badge->ID;?>" style="display:none;" class="popup_class <?php echo $popup_class;?>">
+						 <?php echo $popup_text; ?> 
+						</div>
+					</li>	
+				</ul>	
+				
 					
 
 					
 				<?php
-			
+				
 		}
+
 		?>
 
 		 <script type="text/javascript">
 		  				var templateDir = "<?php echo BADGES_URL; ?>";
+		  				var BadgeID = "<?php echo $badge_selected;?>"
 		</script>
 		<?php
 		echo $after_widget;

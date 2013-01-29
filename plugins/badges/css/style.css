@@ -5,27 +5,7 @@
 	
 }
 
-#copy{
- 	background: url("../images/button_right.png") no-repeat scroll right top transparent;
-    color: #000000;
-    display: block;
-    float: right;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    height: 34px;
-    padding-right: 20px;
-    text-decoration: none;
-    margin-top: 3px;
-}
 
-#copy span{
-
-	background: url("../images/button_left.png") no-repeat scroll 0 0 transparent;
-    display: block;
-    line-height: 22px;
-    padding: 7px 0 5px 18px;
-}
 
 #copy_code{
 	margin-top: 3px;
@@ -46,3 +26,19 @@
 	float:right;
 }
 
+.badge_title select{
+
+    -webkit-appearance: button;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -webkit-user-select: none;
+    border-right: red 2px solid;
+    border-top: red 2px solid;
+    border-left: red 2px solid;
+    border-bottom: red 2px solid;
+    background-color: #fffffe;
+    width:250px;
+    height:30px;
+}
