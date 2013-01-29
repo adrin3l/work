@@ -354,25 +354,33 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 	//The function widget is responsible for the output in the frontend .
 	function widget($args, $instance)
 	{
-			global $wpdb, $post, $dta;
-			extract($args);
+		global $wpdb, $post, $dta;
+		extract($args);
 
-			$use_dropdown = htmlspecialchars($instance['use_dropdown']);
-			$title_class = htmlspecialchars($instance['title_class']);
-			$image_class = htmlspecialchars($instance['image_class']);
-			$code_class = htmlspecialchars($instance['code_class']);
-			$button_class = htmlspecialchars($instance['button_class']);
-			$question_class = htmlspecialchars($instance['question_class']);
-			$popup_class = htmlspecialchars($instance['popup_class']);
-			$dropdown_class = htmlspecialchars($instance['dropdown_class']);
+		$use_dropdown = htmlspecialchars($instance['use_dropdown']);
+		$title_class = htmlspecialchars($instance['title_class']);
+		$image_class = htmlspecialchars($instance['image_class']);
+		$code_class = htmlspecialchars($instance['code_class']);
+		$button_class = htmlspecialchars($instance['button_class']);
+		$question_class = htmlspecialchars($instance['question_class']);
+		$popup_class = htmlspecialchars($instance['popup_class']);
+		$dropdown_class = htmlspecialchars($instance['dropdown_class']);
 
-			$cat=get_category($instance['category']);
+		$cat=get_category($instance['category']);
 
-			$badge = $instance['badges'];
+		$badge_selected = $instance['badges'];
 
-			$badge = get_post($badge);
-			//var_dump_pre($badge);die;
-			
+
+		// var_dump($badge_selected);
+
+		$args = array ('post_type' => 'badge');
+		$badges_arr = get_posts($args);
+
+		echo $before_widget;
+		foreach($badges_arr as $badge){	
+
+
+			// echo '<pre>';var_dump($badge);
 
 			$thumb_url = wp_get_attachment_url( get_post_thumbnail_id($badge->ID) );
 
@@ -384,10 +392,35 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 
 
 
-			echo $before_widget;
+			?>
+				<div id="badge-<?php echo $badge->ID;?>" <?php if($badge->ID != $badge_selected) echo "style='display:none;'" ?> >
+
+			<?php
 			echo $before_title;
 	  		echo "<span class='$title_class'>";
-			echo $badge->post_title; 
+			//echo $badge->post_title;
+	  			?>
+	  				<select name="badges" id="badges" >
+	  					<?php
+
+	  						foreach($badges_arr as $sbadge){
+
+	  							if($sbadge->ID == $badge_selected){
+	  								$selected = 'selected="selected"';
+	  							}else{
+	  								$selected = '';
+	  							}
+
+
+	  							echo "<option value='$sbadge->ID' $selected > $sbadge->post_title </option>";
+	  						}
+
+	  					?>
+
+	  				</select>
+
+	  			<?php
+
 	  		echo "</span>";
 			echo $after_title;	
 
@@ -401,11 +434,20 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 					 <?php echo $popup_text; ?> 
 					</div>
 
-					 <script type="text/javascript">
-		  				var templateDir = "<?php echo BADGES_URL; ?>";
-					</script
+				</div>
+					
+
+					
 				<?php
-			echo $after_widget;
+			
+		}
+		?>
+
+		 <script type="text/javascript">
+		  				var templateDir = "<?php echo BADGES_URL; ?>";
+		</script>
+		<?php
+		echo $after_widget;
 	}
 	
 }//end class widget_w5*/
