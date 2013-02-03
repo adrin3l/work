@@ -27,7 +27,7 @@
 	margin-top: 5px;
 	padding: 2px 5px;
 	width: 275px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 .badges_box li a.badge_button{
 	background: none repeat scroll 0 0 #787878;
@@ -47,8 +47,9 @@
 }
 .badges_box li img{
 	border-radius: 0;
-	width: 290px;
+	
 	height: auto;
+	margin-bottom:20px;
 }
 .badges_box textarea{
 	width: 286px;
@@ -60,6 +61,7 @@
 }
 #badges{
 	width: 290px;
+	margin-bottom: 5px;
 }
 #badges option{
 	padding: 0 10px;
@@ -69,4 +71,7 @@
 	color: #000;
 	font-weight: normal;
 	text-shadow: none;
+}
+.img_class{
+	text-align:center;
 }

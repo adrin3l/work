@@ -29,8 +29,8 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 	  //
 	  	add_action( 'do_meta_boxes', array( __CLASS__, 'hide_unwanted_boxes' ), 10, 3 );
 	
-
-
+		
+		
 	}
 
 	function hide_unwanted_boxes($post_type, $mode, $post ){
@@ -141,7 +141,7 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 		?>
 			<input type="text" id="url" value="<?php echo $url ?>" name="url" class="large-text" />
 			<p class="description">
-				This is the that will be used on frontend !
+				Please insert URL where to link!
 			</p>
 		<?php
 
@@ -165,6 +165,17 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 
 		}
 		?>
+
+		<style>
+
+			#normal-sortables{
+
+				min-height:0px !important;
+
+			}
+			
+
+		</style>
 		
 			<select name= "url_options">
 				<option value="nofollow" <?php echo $selected_nofollow; ?>>
@@ -192,6 +203,7 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 
 	function create_custom_posttype(){
 
+		
 
 	$labels = array(
 		'name' => 'Badges',
@@ -221,11 +233,11 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 		'has_archive' => true, 
 		'hierarchical' => false,
 		'menu_position' => null,
-		'supports' => array( 'title', 'thumbnail',  )
+		'supports' => array( 'title', 'thumbnail')
 	); 
 
   	register_post_type( 'badge', $args );
-
+	add_theme_support('post-thumbnail',array('badge'));
 	}
   }
 
@@ -486,7 +498,7 @@ define( 'BADGES_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 
 			<ul class="badges_box" id="badge-<?php echo $badge->ID;?>" >
 				
-					<li>
+					<li class="img_class">
 					 	<img class='<?php echo $image_class; ?> ' src='<?php echo $thumb_url; ?>' title='<?php echo $badge->post_title;?>' alt='<?php echo $badge->post_title; ?>'/>
 					 </li>
 
