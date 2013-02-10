@@ -1,0 +1,155 @@
+jQuery( document ).ready( function($) {
+		
+        $('a[id|="photo_fancy_display"]').fancybox({
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600, 
+                'speedOut'		:	200, 
+        });
+
+
+			
+        $('a[id|="sms_vote"]').fancybox({
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600, 
+                'speedOut'		:	200,
+                'autoScale'		:	true,
+                'showCloseButton'	: false
+        });
+
+
+
+        $('#photo_contest_upload').fancybox({
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600, 
+                'speedOut'		:	200,
+                'autoScale'		:	true,
+                'showCloseButton'	: true,
+                'width' : 300,
+                'height':300
+        });
+        $('#photo_contest_upload').click (function(){
+                $('#upload_error').hide();     
+                if($('#upload_author').val()==''){
+                        $('#upload_error').show();
+                }
+                     
+        });
+        
+             $('#photo_contest_upload_link').fancybox({
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600, 
+                'speedOut'		:	200,
+                'autoScale'		:	true,
+                'showCloseButton'	: true,
+                'width' : 300,
+                'height':300
+        });
+        $('#photo_contest_upload_link').click (function(){
+                $('#upload_error').hide();     
+                if($('#upload_author').val()==''){
+                        $('#upload_error').show();
+                }
+                     
+        });
+                  
+                  
+                  
+        $('a[id|="sms_vote"]').click (function(){
+                $('#selected_image_id').val($(this).attr('image-id'));
+                $('#sms_code_error').html('');
+                $('#sms_code').val('');
+        });
+
+        $("#close_photo_fancy").click (function(){
+                $.fancybox.close();
+        });
+	
+
+        $("#activate_sms_code").click (function(){
+	
+                $('#sms_spinner').show();
+                var image_id = $('#selected_image_id').val();
+                var code = $('#sms_code').val();
+                var data = {
+                        action: 'sms_voting_callback',
+                        image_id : image_id,
+                        code : code
+                };
+			
+                ajaxurl=ssoConfig.ssoServicePath  ;
+                $.post( ajaxurl, data, function( response ) {
+                        var vote_info =jQuery.parseJSON(response);
+
+                        if(vote_info.error_code == 'ERROR'){	
+                                $('#sms_code_error').css('color','BLACK');
+                                $('#sms_code_error').html(vote_info.error_message);
+                        }
+                        if(vote_info.error_code == 'OK'){	
+                                $('#total_votes_count-'+image_id).html(vote_info.vote_count);
+                                $('#sms_code_error').css('color','GREEN');
+                                $('#sms_code_error').html(vote_info.error_message);
+                        }
+
+                        $('#sms_spinner').hide();
+                });
+        });
+
+
+        //online voting part
+
+        $('a[id|="online_vote"]').click (function(){
+		
+                var image_id=$(this).attr('image-id');
+                jQuery('#online_spinner-'+image_id).show();
+                var data = {
+                        action: 'online_voting_callback',
+                        image_id : image_id
+                };
+                ajaxurl=ssoConfig.ssoServicePath  ;
+                $.post( ajaxurl, data, function( response ) {
+
+                        var vote_info =jQuery.parseJSON(response);
+
+                        if(vote_info.error_code == 'ERROR'){
+                                alert(vote_info.error);
+                        }
+                        if(vote_info.error_code == 'OK'){
+                                $('#total_votes_count-'+image_id).html(vote_info.vote_count);
+                        }
+	
+                        jQuery('#online_spinner-'+image_id).hide();
+                });
+		
+                return false;
+        });
+                
+                
+        $('#upload_photo_contest_button').click(function() {
+                
+                var upload_server = $('#upload_server_side').val();
+                //   var upload_location = $('#upload_form').serialize();
+                                                                               
+                $('#photo_contest_upload_file').upload(upload_server, $('#upload_form').serialize(),function(res) {
+                        var msg =window.JSON.parse(res);
+                                                                                     
+                        if(msg.error==0){
+                                 $('#upload_error').show();
+                                $('#upload_error').css('color','GREEN');
+                                $('#upload_error').html(msg.message);
+                                 
+                        }
+                        if(msg.error==1){
+                                $('#upload_error').show();
+                                $('#upload_error').css('color','RED');
+                                $('#upload_error').html(msg.message);
+                                $('#upload_photo_contest_button').attr('disabled', 'disabled');
+                        }
+                });
+        },'json');
+                
+                
+});

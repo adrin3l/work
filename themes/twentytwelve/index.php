@@ -14,7 +14,9 @@
  * @since Twenty Twelve 1.0
  */
 
-get_header(); ?>
+get_header();
+
+do_action('popup_box'); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">

@@ -1,0 +1,50 @@
+jQuery( document ).ready( function($) {
+$('#upload_link').click(function(){
+        
+        if($('#upload_link:checked').val()==1){
+                $('#upload_link_div').show();
+        }
+        else{
+                  $('#upload_link_div').hide();
+        }
+        
+        
+});
+
+$('#rating_link').click(function(){
+        
+        if($('#rating_link:checked').val()==1){
+                $('#rating_link_div').show();
+        }
+        else{
+                  $('#rating_link_div').hide();
+        }
+        
+        
+});
+
+	$('#Add_related_link').click(function(){
+
+		var title		=	$("#related_title").val();
+		var link		=	$("#related_link").val();
+			if( title.length ==0 || link.length ==0 ){
+				$("#related_error").html('Complete all fields.');
+			}
+			else{
+				$("#related_error").html("");
+				var total_links	=	$("#total_links").val();
+				$('#link_list').append("<p id='link-"+total_links+"'><span><a class='ntdelbutton' onclick='delete_related_link("+total_links+")'>X</a></span> <span>"+title+"</span><span>:"+link+"</span><input type='hidden' name='links["+total_links+"][title]' value='"+title+"'/> <input type='hidden' name='links["+total_links+"][link]' value='"+link+"'/></p>");
+// 		alert('here');
+				total_links=parseInt(total_links)+1;
+				$("#total_links").val(total_links);
+				var title=$("#related_title").val('');
+				var link=$("#related_link").val('');
+			}
+	});
+
+});
+
+function delete_related_link(link_nr){
+
+	jQuery('#link-'+link_nr).remove();
+}			

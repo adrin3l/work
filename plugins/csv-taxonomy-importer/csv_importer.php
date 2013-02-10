@@ -15,7 +15,6 @@ class CSVImporterPlugin {
      */
     function form() {
        
-
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
          if (empty($_FILES['csv_import']['tmp_name'])) {
             $this->log['error'][] = 'No file uploaded, aborting.';
@@ -38,9 +37,49 @@ class CSVImporterPlugin {
 
         // pad shorter rows with empty values
         $csv->symmetrize();
+        $import = 0;
+         // echo '<pre>';var_dump($csv->connect());die;
+            foreach ($csv->connect() as $csv_data) {
 
-         echo '<pre>';var_dump($csv->connect());die;
+                if( $csv_data['term']){
+                    $term= wp_insert_term(
+                            $csv_data['term'], // the term 
+                            $_POST['taxonomy'], // the taxonomy
+                            array(
+                                'description'=> $csv_data['term'],
+                                'slug' => sanitize_title($csv_data['term']),
+                                 )
+                            );
+                    if(is_wp_error($term)){
+
+                        $this->log['error'][] =  $term->get_error_message();
+
+
+                    }else{
+
+                        $import++;
+                    }
+                    
+                }
+
+            }
+
+            if (file_exists($file)) {
+                @unlink($file);
+            }
+
+            if($import == 0){
+
+                 $this->log['error'][] =  'No terms inserted please check if the file is empty or if you have "term" column!';
+
+            }
+            else{
+                 $this->log['notice'][] =  'The import inserted '.$import.' terms';
+            }
+
+         $this->print_messages();
         }
+
 
         // form HTML {{{
 ?>
@@ -48,16 +87,27 @@ class CSVImporterPlugin {
 <div class="wrap">
     <h2>Import CSV</h2>
     <form class="add:the-list: validate" method="post" enctype="multipart/form-data">
-        <!-- Import as draft -->
-        <p>
-        <input name="_csv_importer_import_as_draft" type="hidden" value="publish" />
-        <label><input name="csv_importer_import_as_draft" type="checkbox" <?php if ('draft' == $opt_draft) { echo 'checked="checked"'; } ?> value="draft" /> Import posts as drafts</label>
-        </p>
+       
 
+        <label for"taxonomy">Taxonomy : </label>
+       <select name="taxonomy">
         <!-- Parent category -->
-        <p>Organize into category <?php wp_dropdown_categories(array('show_option_all' => 'Select one ...', 'hide_empty' => 0, 'hierarchical' => 1, 'show_count' => 0, 'name' => 'csv_importer_cat', 'orderby' => 'name', 'selected' => $opt_cat));?><br/>
-            <small>This will create new categories inside the category parent you choose.</small></p>
+        <?php 
+        $args=array(
+            'public'   => true  
+            ); 
+        $output = 'names';
 
+        $taxonomies = get_taxonomies($args,$output);
+
+        foreach($taxonomies as $taxonomy){
+
+            echo "<option value='$taxonomy'>$taxonomy</option>";
+
+        }
+
+        ?>
+        </select>
         <!-- File input -->
         <p><label for="csv_import">Upload file:</label><br/>
             <input name="csv_import" id="csv_import" type="file" value="" aria-required="true" /></p>
@@ -66,8 +116,9 @@ class CSVImporterPlugin {
 </div><!-- end wrap -->
 
 <?php
-        // end form HTML }}}
 
+        // end form HTML }}}
+ 
     }
 
     function print_messages() {

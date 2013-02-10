@@ -1,0 +1,7 @@
+
+#link_list p{
+clear:both;
+}
+#related_error{
+color:RED;
+}

@@ -1,0 +1,13 @@
+jQuery(document).ready(function($){
+
+
+	$("#vote_sms").click (function(){
+ 		
+			$("#sms_extend").show();
+ 	
+			
+	});
+	$("#vote_online").click (function(){
+		$("#sms_extend").hide();
+	});
+});
