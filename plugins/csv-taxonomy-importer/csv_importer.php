@@ -42,12 +42,19 @@ class CSVImporterPlugin {
             foreach ($csv->connect() as $csv_data) {
 
                 if( $csv_data['term']){
+
+                    if($_POST['term_slug']){
+                        $term_slug = str_replace('%term_slug%',sanitize_title($csv_data['term']),$_POST['term_slug']);
+                    }else{
+                        $term_slug=sanitize_title($csv_data['term']);
+                    }
+
                     $term= wp_insert_term(
                             $csv_data['term'], // the term 
                             $_POST['taxonomy'], // the taxonomy
                             array(
                                 'description'=> $csv_data['term'],
-                                'slug' => sanitize_title($csv_data['term']),
+                                'slug' => $term_slug
                                  )
                             );
                     if(is_wp_error($term)){
@@ -89,6 +96,7 @@ class CSVImporterPlugin {
     <form class="add:the-list: validate" method="post" enctype="multipart/form-data">
        
 
+        
         <label for"taxonomy">Taxonomy : </label>
        <select name="taxonomy">
         <!-- Parent category -->
@@ -108,6 +116,15 @@ class CSVImporterPlugin {
 
         ?>
         </select>
+<br/>
+        <label for="term_slug"> Term Slug:
+            <input type="text" value="<?php echo $_POST['term_slug']; ?>" name="term_slug" />
+            <p class="description"> Use a place holder %term_slug% for creating the slug and add what ever text you want for extending slug. </p>
+            <p class="description"> You should always have %term_slug% in this field .</p>
+            <p class="description"> EG: coupon_%term_slug%_store </p>
+            <p class="description"> If this field remain empty he will create the default slug. </p>
+
+        </label> 
         <!-- File input -->
         <p><label for="csv_import">Upload file:</label><br/>
             <input name="csv_import" id="csv_import" type="file" value="" aria-required="true" /></p>

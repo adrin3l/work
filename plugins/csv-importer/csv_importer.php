@@ -202,6 +202,8 @@ class CSVImporterPlugin {
         // pad shorter rows with empty values
         $csv->symmetrize();
 
+
+        var_dump_pre($csv->connect() );
         // WordPress sets the correct timezone for date functions somewhere
         // in the bowels of wp_insert_post(). We need strtotime() to return
         // correct time before the call to wp_insert_post().
