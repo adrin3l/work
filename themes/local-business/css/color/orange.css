@@ -1,0 +1,153 @@
+.header {
+	background:url('images/kitchenremodeling-headerbg.png');
+	border:solid 1px #9b4c06;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* Menu Style
+========================================================*/
+.menu_bar {
+	background:#fdc27d url(images/kitchenremodeling-menubg.png) bottom repeat-x;
+	border-top:solid 1px #fdc27d;
+	background-color:#fdc27d;
+}
+#menu .ddsmoothmenu li {
+	background:url(images/kitchenremodeling-menu-sep.png) no-repeat;
+}
+#menu .ddsmoothmenu li a {
+	background:url(images/kitchenremodeling-menubg.png) bottom repeat-x;
+}
+#menu li.current-menu-item a, #menu li.current-menu-parent a, #menu li.current_page_parent a, #menu li a.selected, #menu li a:hover, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/kitchenremodeling-menu-tip.png) bottom center no-repeat;
+}
+#menu li a:hover {
+	background:url(images/kitchenremodeling-menu-tip.png) bottom center no-repeat;
+	margin-left:1px;
+}
+#menu li:hover a, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/kitchenremodeling-menuhoverbg.png) left center repeat-x;
+}
+#menu li a:hover {
+	color:#fff;
+}
+#menu .ddsmoothmenu li li:first-child {
+	background-image:none;
+}
+#menu .ddsmoothmenu li li:first-child:before {
+	border:solid 1px #fff;
+}
+#menu .ddsmoothmenu li li {
+	background:#904606;
+}
+#menu .ddsmoothmenu li li a {
+	background:url(images/kitchenremodeling-submenu-sep.png) repeat-x;
+}
+#menu .ddsmoothmenu li li a:hover{
+color:#db780a;
+}
+/*signup form
+========================================================*/
+.signup {
+	width:100%;
+	height:auto;
+	background:#db780a url(images/kitchenremodeling-formbg.png) repeat-x;
+	padding-bottom:25px;
+	border:solid 1px #9b4c06;
+	border-top:none;
+	display:inline-block;
+}
+.signup .signupleft .signupinfo h1 {
+	text-shadow:0 2px 1px #824c0d;
+}
+.signup .signupleft .signup-text p {
+	text-shadow:0 1px 0 #616c28;
+}
+.signup .signupleft .signupinfo {
+	color:#fff;
+	text-shadow:0 2px 0 #4b4b4b;
+}
+.signup .signupform input[type="text"] {
+	border:solid 1px #b76609;
+}
+.signup .signupform textarea {
+	border:solid 1px #b76609;
+}
+/*Feature Content
+===============================================*/
+.feature_contentbox {
+	border-bottom:solid 2px #c96f0a;
+}
+.feature_contentbox.last {
+	border-bottom:solid 2px #c96f0a;
+}
+.feature_contentbox a.readmore {
+	color:#c96f0a;
+}
+.feature_contentbox a.readmore:hover {
+	opacity:0.5;
+}
+/*contact page
+=======================================================*/
+
+.contactForm input[type="text"]:focus, .contactForm textarea:focus {
+	background:#fff;
+	border:1px solid #c96f0a;
+}
+.contactForm input[type="submit"] {
+	background:#663107;
+	padding:5px;
+	border:solid 1px #c96f0a;
+}
+/*Blog Page
+===================================================*/
+.content-bar .post .post_title a:hover {
+	color:#c96f0a;
+}
+.content-bar .post .post_content .read_more {
+	background-color:#c96f0a;
+}
+.content-bar .post .post_meta a:hover {
+	color:#c96f0a;
+}
+.content-bar .post .post_meta .post_comment a:hover {
+	color:#c96f0a;
+}
+/*-----------------------------------------------------*/
+/* Commentlist Style*/
+/*-----------------------------------------------------*/
+
+#commentform input#submit {
+	background:#663107;
+	padding:5px;
+	border:solid 1px #be6218;
+}
+#commentform input#submit:hover {
+	opacity:0.5;
+	color:#fff;
+}
+/* Commentform Style
+-------------------------------------------------------*/
+#commentform input[type="text"]:focus, textarea#comment:focus {
+	background:#fff;
+	border:1px solid #c96f0a;
+}
+/*Sidebar 
+====================================================*/
+.sidebar ul li a:hover {
+	color:#c96f0a;
+}
+/*Footer
+===========================================================*/
+.footer-wrapper .footer a:hover {
+	color:#c96f0a;
+	padding-top:5px;
+}
+.copyright_left a:hover {
+	color:#c96f0a;
+}
+.copyright .copyrightinfo a:hover {
+	color:#c96f0a;
+}

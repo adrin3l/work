@@ -1,0 +1,147 @@
+.header {
+	background:url('images/landscaper-headerbg.png');
+	border:solid 1px #223e58;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	border-bottom:solid 1px #092205;
+}
+/* Menu Style
+========================================================*/
+.menu_bar {
+	background:#5bae46 url(images/landscaper-menubg.png) bottom repeat-x;
+	border-top:solid 1px #5bae46;
+	background-color:#5bae46;
+}
+#menu .ddsmoothmenu li {
+	background:url(images/landscaper-menu-sep.png) no-repeat;
+}
+#menu .ddsmoothmenu li a {
+	background:url(images/landscaper-menubg.png) bottom repeat-x;
+}
+#menu li.current-menu-item a, #menu li.current-menu-parent a, #menu li.current_page_parent a, #menu li a.selected, #menu li a:hover, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/landscaper-menu-tip.png) bottom center no-repeat;
+}
+#menu li:hover a, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/landscaper-menuhoverbg.png) left center repeat-x;
+}
+#menu li a:hover {
+	color:#fff;
+}
+#menu .ddsmoothmenu li li:first-child {
+	background-image:none;
+}
+#menu .ddsmoothmenu li li:first-child:before {
+	border:solid 1px #fff;
+}
+#menu .ddsmoothmenu li li {
+	background:#071f02;
+}
+#menu .ddsmoothmenu li li a {
+	background:url(images/landscaper-submenu-sep.png) repeat-x;
+}
+#menu .ddsmoothmenu li li a:hover{
+color:#426322;
+}
+/*signup form
+========================================================*/
+.signup {
+	width:100%;
+	height:auto;
+	background:#426322 url(images/landscaper-formbg.png) repeat-x;
+	padding-bottom:25px;
+	border:solid 1px #285774;
+	border-top:none;
+	display:inline-block;
+}
+.signup .signupleft .signupinfo h1 {
+	text-shadow:0 2px 1px #264417;
+}
+.signup .signupleft .signupinfo {
+	color:#fff;
+	text-shadow:0 2px 0 #4b4b4b;
+}
+.signup .signupform input[type="text"] {
+	border:solid 1px #436c02;
+}
+.signup .signupform textarea {
+	border:solid 1px #436c02;
+}
+/*Feature Content
+===============================================*/
+.feature_contentbox {
+	border-bottom:solid 2px #49801c;
+}
+.feature_contentbox.last {
+	border-bottom:solid 2px #49801c;
+}
+.feature_contentbox a.readmore {
+	color:#49801c;
+}
+.feature_contentbox a.readmore:hover {
+	opacity:0.5;
+}
+/*contact page
+=======================================================*/
+
+.contactForm input[type="text"]:focus, .contactForm textarea:focus {
+	background:#fff;
+	border:1px solid #49801c;
+}
+.contactForm input[type="submit"] {
+	background:#49801c;
+	padding:5px;
+	border:solid 1px #5bae46;
+}
+/*Blog Page
+===================================================*/
+.content-bar .post .post_title a:hover {
+	color:#4e7c06;
+}
+.content-bar .post .post_content .read_more {
+	background-color:#49801c;
+}
+.content-bar .post .post_meta a:hover {
+	color:#49801c;
+}
+.content-bar .post .post_meta .post_comment a:hover {
+	color:#49801c;
+}
+/*-----------------------------------------------------*/
+/* Commentlist Style*/
+/*-----------------------------------------------------*/
+
+#commentform input#submit {
+	background:#49801c;
+	padding:5px;
+	border:solid 1px #5bae46;
+}
+#commentform input#submit:hover {
+	opacity:0.5;
+	color:#fff;
+}
+/* Commentform Style
+-------------------------------------------------------*/
+#commentform input[type="text"]:focus, textarea#comment:focus {
+	background:#fff;
+	border:1px solid #49801c;
+}
+/*Sidebar 
+====================================================*/
+.sidebar ul li a:hover {
+	color:#49801c;
+}
+/*Footer
+===========================================================*/
+.footer-wrapper .footer a:hover {
+	color:#49801c;
+	padding-top:5px;
+}
+.copyright_left a:hover {
+	color:#49801c;
+}
+.copyright .copyrightinfo a:hover {
+	color:#49801c;
+}

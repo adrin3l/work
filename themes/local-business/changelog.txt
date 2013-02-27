@@ -1,0 +1,27 @@
+== Changelog ==
+
+= Theme Name: local-business lite
+* Version: 1.1.3
+***************************************
+1. Code Aligned and generic logo used in theme.
+
+* Version: 1.1.3
+***************************************
+1. Deprecated function image_resize() fixed.
+2. Themes must not use theme specific logo by default fixed.
+
+* Version: 1.1.2
+***************************************
+1. Custom background option has to be use WordPress core function, fixed.
+2.Credit links should not be in a way that they get SEO benefits.
+(Wordpress is spelled wrong anyway) fixed.
+
+* Version: 1.1.1
+***************************************
+1. Undefined index id error now fixed.
+2. Removed @package WordPress.
+3. Removed Twenty_Eleven reference.
+
+* Version: 1.0.0
+***************************************
+1. local-business Theme is created on 10/10/2012.

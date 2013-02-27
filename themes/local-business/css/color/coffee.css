@@ -1,0 +1,148 @@
+.header {
+	background:url('images/coffeeshop-headerbg.png');
+	border:solid 1px #740303;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	border-bottom: solid 1px #060300;
+}
+/* Menu Style
+========================================================*/
+.menu_bar {
+	background:#be6218 url(images/coffeeshop-menubg.png) bottom repeat-x;
+	border-top:solid 1px #be6218;
+	background-color:#be6218;
+}
+#menu .ddsmoothmenu li {
+	background:url(images/coffeeshop-menu-sep.png) no-repeat;
+}
+#menu .ddsmoothmenu li a {
+	background:#be6218 url(images/coffeeshop-menubg.png) bottom repeat-x;
+}
+
+#menu li:hover a, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/coffeeshop-menuhoverbg.png) left center repeat-x;
+}
+#menu li a:hover {
+	color:#fff;
+}
+#menu .ddsmoothmenu li li:first-child {
+	background-image:none;
+}
+#menu .ddsmoothmenu li li:first-child:before {
+	border:solid 1px #fff;
+}
+#menu .ddsmoothmenu li li {
+	background:#320a02;
+}
+#menu .ddsmoothmenu li li a {
+	background:url(images/coffeeshop-submenu-sep.png) repeat-x;
+}
+#menu .ddsmoothmenu li li a:hover{
+color:#8c4b08;
+}
+/*signup form
+========================================================*/
+.signup {
+	width:100%;
+	height:auto;
+	background:#8c4b08 url(images/coffeeshop-formbg.png) repeat-x;
+	padding-bottom:25px;
+	border:solid 1px #760303;
+	border-top:none;
+	display:inline-block;
+}
+.signup .signupleft .signupinfo h1 {
+	text-shadow:0 2px 1px #5e340e;
+}
+.signup .signupleft .signup-text p {
+	text-shadow:0 1px 0 #616c28;
+}
+.signup .signupleft .signupinfo {
+	color:#fff;
+	text-shadow:0 2px 0 #4b4b4b;
+}
+.signup .signupform input[type="text"] {
+	border:solid 1px #4e1e06;
+}
+.signup .signupform textarea {
+	border:solid 1px #4e1e06;
+}
+/*Feature Content
+===============================================*/
+.feature_contentbox {
+	border-bottom:solid 2px #663107;
+}
+.feature_contentbox.last {
+	border-bottom:solid 2px #663107;
+}
+.feature_contentbox a.readmore {
+	color:#663107;
+}
+.feature_contentbox a.readmore:hover {
+	opacity:0.5;
+}
+/*contact page
+=======================================================*/
+
+.contactForm input[type="text"]:focus, .contactForm textarea:focus {
+	background:#fff;
+	border:1px solid #663107;
+}
+.contactForm input[type="submit"] {
+	background:#663107;
+	padding:5px;
+	border:solid 1px #be6218;
+}
+/*Blog Page
+===================================================*/
+.content-bar .post .post_title a:hover {
+	color:#663107;
+}
+.content-bar .post .post_content .read_more {
+	background-color:#663107;
+}
+.content-bar .post .post_meta a:hover {
+	color:#663107;
+	opacity:0.5;
+}
+.content-bar .post .post_meta .post_comment a:hover {
+	color:#663107;
+}
+/*-----------------------------------------------------*/
+/* Commentlist Style*/
+/*-----------------------------------------------------*/
+
+#commentform input#submit {
+	background:#663107;
+	padding:5px;
+	border:solid 1px #be6218;
+}
+#commentform input#submit:hover {
+	opacity:0.5;
+	color:#fff;
+}
+/* Commentform Style
+-------------------------------------------------------*/
+#commentform input[type="text"]:focus, textarea#comment:focus {
+	background:#fff;
+	border:1px solid #663107;
+}
+/*Sidebar 
+====================================================*/
+.sidebar ul li a:hover {
+	color:#663107;
+}
+/*Footer
+===========================================================*/
+.footer-wrapper .footer a:hover {
+	color:#663107;
+	padding-top:5px;
+}
+.copyright_left a:hover {
+	color:#663107;
+}
+.copyright .copyrightinfo a:hover {
+	color:#663107;
+}

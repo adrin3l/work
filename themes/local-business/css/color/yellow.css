@@ -1,0 +1,154 @@
+.header {
+	background:url('images/taxicab-headerbg.png');
+	border:solid 1px #d79c04;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* Menu Style
+========================================================*/
+.menu_bar {
+	background:#fbd565 url(images/taxicab-menubg.png) bottom repeat-x;
+	border-top:solid 1px #fbd565;
+	background-color:#fbd565;
+}
+#menu .ddsmoothmenu li {
+	background:url(images/taxicab-menu-sep.png) no-repeat;
+}
+#menu .ddsmoothmenu li a {
+	background:url(images/taxicab-menubg.png) bottom repeat-x;
+}
+#menu li.current-menu-item a, #menu li.current-menu-parent a, #menu li.current_page_parent a, #menu li a.selected, #menu li a:hover, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/taxicab-menu-tip.png) bottom center no-repeat;
+}
+#menu li a:hover {
+	background:url(images/taxicab-menu-tip.png) bottom center no-repeat;
+}
+#menu li:hover a, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/taxicab-menuhoverbg.png) left center repeat-x;
+}
+#menu li a:hover {
+	color:#fff;
+}
+#menu .ddsmoothmenu li li:first-child {
+	background-image:none;
+}
+#menu .ddsmoothmenu li li:first-child:before {
+	border:solid 1px #fff;
+}
+#menu .ddsmoothmenu li li {
+	background:#b67403;
+}
+#menu .ddsmoothmenu li li a {
+	background:url(images/taxicab-submenu-sep.png) repeat-x;
+}
+#menu .ddsmoothmenu li li a:hover{
+color:#fadc57;
+}
+/*signup form
+========================================================*/
+.signup {
+	width:100%;
+	height:auto;
+	background:#fadc57 url(images/taxicab-formbg.png) repeat-x;
+	padding-bottom:25px;
+	border:solid 1px #f5cc01;
+	border-top:none;
+	display:inline-block;
+}
+.signup .signupleft .signupinfo h1 {
+	color:#726300;
+	text-shadow:0 1px 0 #c8a105;
+}
+.signup .signupleft .signup-text p {
+	color:#726300;
+	text-shadow:0 1px 0 #c8a105;
+}
+.signup .signupleft .signupinfo {
+	color:#1e1803;
+	text-shadow:0 2px 0 #cfb854;
+}
+.signup .signupform input[type="text"] {
+	border:solid 1px #f5cc01;
+}
+.signup .signupform textarea {
+	border:solid 1px #f5cc01;
+}
+/*Feature Content
+===============================================*/
+.feature_contentbox {
+	border-bottom:solid 2px #efc610;
+}
+.feature_contentbox.last {
+	border-bottom:solid 2px #efc610;
+}
+.feature_contentbox a.readmore {
+	color:#efc610;
+}
+.feature_contentbox a.readmore:hover {
+	opacity:0.5;
+}
+/*contact page
+=======================================================*/
+
+.contactForm input[type="text"]:focus, .contactForm textarea:focus {
+	background:#fff;
+	border:1px solid #efc610;
+}
+.contactForm input[type="submit"] {
+	background:#efc610;
+	padding:5px;
+	border:solid 1px #fbd565;
+}
+/*Blog Page
+===================================================*/
+.content-bar .post .post_title a:hover {
+	color:#efc610;
+}
+.content-bar .post .post_content .read_more {
+	background-color:#efc610;
+}
+.content-bar .post .post_meta a:hover {
+	color:#efc610;
+}
+.content-bar .post .post_meta .post_comment a:hover {
+	color:#efc610;
+}
+/*-----------------------------------------------------*/
+/* Commentlist Style*/
+/*-----------------------------------------------------*/
+
+#commentform input#submit {
+	background:#efc610;
+	padding:5px;
+	border:solid 1px #fbd565;
+}
+#commentform input#submit:hover {
+	opacity:0.5;
+	color:#fff;
+}
+/* Commentform Style
+-------------------------------------------------------*/
+#commentform input[type="text"]:focus, textarea#comment:focus {
+	background:#fff;
+	border:1px solid #efc610;
+}
+/*Sidebar 
+====================================================*/
+.sidebar ul li a:hover {
+	color:#efc610;
+}
+/*Footer
+===========================================================*/
+.footer-wrapper .footer a:hover {
+	color:#efc610;
+	padding-top:5px;
+}
+.copyright_left a:hover {
+	color:#efc610;
+}
+.copyright .copyrightinfo a:hover {
+	color:#efc610;
+}

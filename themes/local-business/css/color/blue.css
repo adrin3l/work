@@ -1,0 +1,149 @@
+.header {
+	background:url('images/lockman-headerbg.png');
+	border:solid 1px #233f5a;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* Menu Style
+========================================================*/
+.menu_bar {
+	background:#a0b3c6 url(images/lockman-menubg.png) bottom repeat-x;
+	border-top:solid 1px #a0b3c6;
+	background-color:#a0b3c6;
+}
+#menu .ddsmoothmenu li {
+	background:url(images/lockman-menu-sep.png) no-repeat;
+	
+}
+#menu .ddsmoothmenu li a {
+	background:url(images/lockman-menubg.png) bottom repeat-x;
+	
+}
+#menu li.current-menu-item a, #menu li.current-menu-parent a, #menu li.current_page_parent a, #menu li a.selected, #menu li a:hover, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/lockman-menu-tip.png) bottom center no-repeat;
+	
+}
+#menu li a:hover {
+	background:url(images/lockman-menu-tip.png) bottom center no-repeat;
+}
+#menu li:hover a, #menu li.current_page_item a {
+	color:#fff;
+	background:url(images/lockman-menuhoverbg.png) left center repeat-x;
+}
+#menu .ddsmoothmenu li li:first-child {
+	background-image:none;
+}
+#menu .ddsmoothmenu li li:first-child:before {
+	border:solid 1px #fff;
+}
+#menu .ddsmoothmenu li li {
+	background:#293e51;
+}
+#menu .ddsmoothmenu li li a {
+	background:url(images/lockman-submenu-sep.png) repeat-x;
+}
+#menu .ddsmoothmenu li li a:hover{
+color:#597585;
+}
+/*signup form
+========================================================*/
+.signup {
+	width:100%;
+	height:auto;
+	background:#597585 url(images/lockman-formbg.png) repeat-x;
+	padding-bottom:25px;
+	border:solid 1px #285774;
+	border-top:none;
+	display:inline-block;
+}
+.signup .signupleft .signupinfo h1 {
+	text-shadow:0 2px 1px #374852;
+}
+.signup .signupleft .signupinfo {
+	color:#fff;
+	text-shadow:0 2px 0 #4b4b4b;
+}
+.signup .signupform input[type="text"] {
+	border:solid 1px #305266;
+}
+.signup .signupform textarea {
+	border:solid 1px #305266;
+}
+/*Feature Content
+===============================================*/
+.feature_contentbox {
+	border-bottom:solid 2px #3e5968;
+}
+.feature_contentbox.last {
+	border-bottom:solid 2px #3e5968;
+}
+.feature_contentbox a.readmore {
+	color:#3e5968;
+}
+.feature_contentbox a.readmore:hover {
+	opacity:0.5;
+}
+/*contact page
+=======================================================*/
+
+.contactForm input[type="text"]:focus, .contactForm textarea:focus {
+	background:#fff;
+	border:1px solid #3e5968;
+}
+.contactForm input[type="submit"] {
+	background:#3e5968;
+	padding:5px;
+	border:solid 1px #3e5968;
+}
+/*Blog Page
+===================================================*/
+.content-bar .post .post_title a:hover {
+	color:#3e5968;
+}
+.content-bar .post .post_content .read_more {
+	background-color:#3e5968;
+}
+.content-bar .post .post_meta a:hover {
+	color:#3e5968;
+}
+.content-bar .post .post_meta .post_comment a:hover {
+	color:#3e5968;
+}
+/*-----------------------------------------------------*/
+/* Commentlist Style*/
+/*-----------------------------------------------------*/
+
+#commentform input#submit {
+	background:#3e5968;
+	padding:5px;
+	border:solid 1px #3e5968;
+}
+#commentform input#submit:hover {
+	opacity:0.5;
+	color:#fff;
+}
+/* Commentform Style
+-------------------------------------------------------*/
+#commentform input[type="text"]:focus, textarea#comment:focus {
+	background:#fff;
+	border:1px solid #3e5968;
+}
+/*Sidebar 
+====================================================*/
+.sidebar ul li a:hover {
+	color:#3e5968;
+}
+/*Footer
+===========================================================*/
+.footer-wrapper .footer a:hover {
+	color:#3e5968;
+	padding-top:5px;
+}
+.copyright_left a:hover {
+	color:#3e5968;
+}
+.copyright .copyrightinfo a:hover {
+	color:#3e5968;
+}

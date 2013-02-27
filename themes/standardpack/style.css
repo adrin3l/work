@@ -1,0 +1,900 @@
+/*
+Theme Name: StandardPack
+Theme URI: http://tutskid.com/standardpack/
+Description: A search engine optimized website theme for WordPress. 6 widget-ready areas and a user friendly theme options page. 
+Author: Marvie Pons
+Author URI: http://tutskid.com/
+Version: 1.8.3.2
+Tags: fixed-width, right-sidebar, gray, blue, white, two-columns, theme-options, custom-menu, custom-header, custom-background, featured-images, microformats, theme-options, threaded-comments
+
+License: GNU General Public License, version 2 (GPL).
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ 
+*/
+/* Reset default browser styles */
+@import url('styles/reset.css');
+/* Rebuild default browser styles */
+@import url('styles/rebuild.css');
+/* Basic WordPress Styles */
+@import url('styles/wp.css');
+
+/************************************************
+* BASIC LAYOUT *
+************************************************/
+#main {
+	clear: both;
+    overflow: hidden;
+	padding:5px;
+	background: #fff;
+	-webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-ms-transition:all 0.2s  ease-in-out;
+	-ms-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+
+#container {
+        float: left;
+        margin: 3px -400px 0 0;
+        width: 99%;
+}
+#content {
+        margin: 0 400px 0 5px;
+		width: 59%;
+		overflow: hidden;
+		clear: both;
+}
+#primary, #secondary {
+		clear:right;
+        float: right;
+        overflow: hidden;
+        width: 380px;
+		margin-right:5px;
+}
+
+#socials {
+    float: right;
+    width: 380px;
+	margin: 10px 5px 0 0;
+}
+
+#socials  img {
+	margin: 0 0 -10px 42px;
+	padding: 5px 0 0 0;
+}
+
+/* fixed-width layout */
+#wrapper {
+  margin: 0 auto;
+  padding: 0 auto;
+  width: 960px;
+}
+
+#container {
+margin-top: 3px;
+}
+
+/* Navigation */
+div.skip-link {
+	position:absolute;
+	right:1em;
+	top:.7em;
+}
+
+.navigation {
+	margin: 1.5em 0 .5em 0;
+	overflow: auto;
+}
+
+.nav-previous {
+	float: left;
+	width: 50%;
+}
+.nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
+}
+
+.previous-image {
+	float: left;
+	width: 50%;
+}
+.next-image {
+	float: right;
+	text-align: right;
+	width: 50%;
+}
+
+/************************************************
+* GENERAL ELEMENTS *
+************************************************/
+
+body {
+	font-family:Georgia,"Times New Roman",Times,serif;
+	text-shadow:1px 1px 1px #999;
+}
+
+a {
+	color: #008099;
+	text-decoration: none;
+}
+a:hover {
+	color: #778899;
+	text-decoration: underline;
+}
+
+code {
+	font-size: 14px;
+	font-family: "Bitstream Vera Sans Mono",Monaco,"Lucida Console",monospace;
+}
+
+ins {
+	background: #909090;
+}
+
+pre {
+	overflow: auto;
+	font-size: 1.1em;
+	font-family:Georgia,"Times New Roman",Times,serif;
+	white-space: pre-wrap;/* css3 */
+	padding: 2px 3px;
+	background: #c8c8c8;
+	background: -moz-linear-gradient(-45deg,  #c8c8c8 0%, #a6a6a6 98%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#c8c8c8), color-stop(98%,#a6a6a6));
+	background: -webkit-linear-gradient(-45deg,  #c8c8c8 0%,#a6a6a6 98%);
+	background: -o-linear-gradient(-45deg,  #c8c8c8 0%,#a6a6a6 98%);
+	background: -ms-linear-gradient(-45deg,  #c8c8c8 0%,#a6a6a6 98%);
+	background: linear-gradient(-45deg,  #c8c8c8 0%,#a6a6a6 98%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c8c8c8', endColorstr='#a6a6a6',GradientType=1 );
+
+}
+
+blockquote {
+	margin: 5px 10px 5px 10px;
+	padding: 10px 60px 10px 10px;
+	background-color: #cedce7;
+}
+
+h1 {
+	font-size:1.6em;
+}
+h2 {
+	font-size:1.5em;
+}
+h3 {
+	font-size:1.4em;
+}
+h4 {
+	font-size:1.3em;
+}
+h5 {
+	font-size:1.2em;
+}
+h6 {
+	font-size:1.1em;
+}
+
+small {
+	font-size: .9em;
+}
+
+table {
+	margin: .5em 0;
+}
+table th {
+	color: #aaa;
+}
+table td,table th {
+	padding: .5em .7em;
+}
+table th {
+	background: url(images/whitetrans.png);
+	text-transform: uppercase;
+	border-bottom: 1px transparent;
+}
+table td {
+	background: url(images/boxes-bg.jpg);
+	vertical-align: middle;
+}
+table tr.even td {
+	background: url(images/blacktrans.png);
+}
+table tr:hover td {
+	background: url(images/whitetrans.png);
+}
+
+/************************************************
+* HEADER *
+************************************************/
+
+#header {
+	background: url(images/boxes-bg.jpg) #FFF repeat-x;
+}
+
+#header #branding {
+	float: left;
+	width: 470px;
+	margin: 35px 0 15px 0;
+}
+
+#branding  img {
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin: 5px 10px 10px 0;
+}
+
+#header #branding #blog-title {
+	color: #fff;
+	font-size: 2.1em;
+	font-weight: normal;
+	text-shadow: 0 0 6px #555;
+	clear: none;
+	font-family:Georgia,"Times New Roman",Times,serif;
+}
+
+#blog-title img{
+	width: 390px;
+	margin: 0 20px 0 0;
+}
+
+#header #branding #blog-title a:hover {
+	color: #778899;
+	text-decoration: none;
+}
+#header #branding #blog-description {
+	font-size: 1.2em;
+	color: #aaa;
+	margin-top: .2em;
+	line-height: 1.2em;
+}
+
+#header  li {
+list-style: none;
+}
+
+/************************************************
+* HEADER BANNER *
+************************************************/
+
+#headerbanner, #header .widget-container {
+	float: right;
+	width: 468px;
+	margin: 30px 0 10px 0;
+	text-align: left;
+	padding: 10px;
+	background: url(images/whitetrans.png);
+	font-size: 1em;
+	line-height: 1.5em;
+	list-style: none;
+	border: none;
+}
+
+#headerbanner h3, #header .widget-title {
+	font-size: 1.1em;
+	text-transform: uppercase;
+}
+
+/************************************************
+* TOP MENU *
+************************************************/
+
+/* Making the List Horizontal and Removing the Bullets */
+#top {
+	display: block;
+	float: left;
+	margin: 0 auto;
+	width: 100%;
+	border-bottom:1px solid #000;
+	background: #fff;
+}
+
+#top ul, div.menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#top li, div.menu li{
+	float: left;
+	position: relative;
+}
+
+/* Positioning and Hiding the Submenu */
+#top ul ul {
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	display: none;
+	position: absolute;
+	top: 38px;
+	left: 0;
+	float: left;
+	width: 180px;
+	z-index: 99999;
+}
+
+#top ul ul ul {
+	left: 100%;
+	top: 0;
+}
+
+/* Better coloring and spacing */
+#top a {
+	color: #008099;
+	display: block;
+	line-height: 41px;
+	padding: 0 10px;
+	text-decoration: none;
+	font-weight: normal;
+	-webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-ms-transition:all 0.2s  ease-in-out;
+	-ms-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;border-radius:3px;
+}
+
+/* Adding the Hover */
+#top ul li:hover > ul {
+	display: block;
+}
+
+#top  li:hover > a,
+#top ul ul :hover > a {
+	color: #000;
+	background:#999;
+}
+
+/*  Styling the Submenu
+	make the submenu vertical and add some color */
+#top ul ul a {
+	line-height: 1em;
+	padding: 10px;
+	width: 160px;
+	height: auto;
+	background:#999;
+}
+
+/* match the color scheme */
+#top  {
+  display: block;
+  float: left;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Highlight Current Page */
+#top ul li.current_page_item > a,
+#top ul li.current-menu-ancestor > a,
+#top ul li.current-menu-item > a,
+#top ul li.current-menu-parent > a {
+	color: #aaa;
+}
+
+#top .top_menu, #top .menu {
+	float: left;
+	width: 68%;
+}
+
+
+/************************************************
+* TOP SEARCHBOX *
+************************************************/
+
+#top #search {
+	float: right;
+	width: 300px;
+	text-align: right;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+#top #searchbox {
+	width: 180px;
+	}
+
+#top .submitbutton {
+	cursor: pointer;
+}
+
+/************************************************
+* PRIMARY MENU *
+************************************************/
+
+/* Making the List Horizontal and Removing the Bullets */
+#access {
+	display: block;
+	float: left;
+	margin: 0 auto;
+	width: 100%;
+}
+
+#access ul,
+div.menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#access li,
+div.menu li {
+	float: left;
+	position: relative;
+}
+
+/* Positioning and Hiding the Submenu */
+#access ul ul {
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	display: none;
+	position: absolute;
+	top: 38px;
+	left: 0;
+	float: left;
+	width: 180px;
+	z-index: 99999;
+}
+
+#access ul ul ul {
+	left: 100%;
+	top: 0;
+}
+
+/* Better coloring and spacing */
+#access a {
+	color: #fff;
+	display: block;
+	line-height: 41px;
+	padding: 0 10px;
+	text-decoration: none;
+	font-weight: normal;
+	-webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-ms-transition:all 0.2s  ease-in-out;
+	-ms-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+
+/* Adding the Hover */
+#access ul li:hover > ul {
+	display: block;
+}
+
+#access li:hover > a,
+#access ul ul :hover > a {
+	color: #000;
+	background:#008099;
+}
+
+/*  Styling the Submenu 
+	make the submenu vertical and add some color */
+#access ul ul a {
+	line-height: 1em;
+	padding: 10px;
+	width: 160px;
+	height: auto;
+	background:#008099;
+}
+
+/* Match the color scheme */
+#access {
+	background-color: #999;
+	display: block;
+	float: left;
+	margin: 0 auto;
+	width: 100%;
+	-webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-ms-transition:all 0.2s  ease-in-out;
+	-ms-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+
+/* Highlight Current Page */
+#access ul li.current_page_item > a,
+#access ul li.current-menu-ancestor > a,
+#access ul li.current-menu-item > a,
+#access ul li.current-menu-parent > a {
+	color: #000;
+}
+
+/************************************************
+* CONTENT *
+************************************************/
+
+.entry-content {
+	line-height: 1.5em;
+	margin: .8em 0;
+}
+
+h1.entry-title {
+	text-shadow:1px 1px 1px #999;
+	font-size:20px;
+	font-family:Georgia,"Times New Roman",Times,serif;
+}
+
+h2.entry-title {
+	text-shadow:1px 1px 1px #999;
+	font-size:22px;
+	font-family:Georgia,"Times New Roman",Times,serif;
+}
+
+.entry-content h1 {
+	padding: .8em 0;
+	font-size: 1.5em;
+}
+.entry-content h2 {
+	padding: .8em 0;
+	font-size: 1.4em;
+}
+.entry-content h3 {
+	padding: .8em 0;
+	font-size: 1.3em;
+}
+.entry-content h4 {
+	padding: .8em 0;
+	font-size: 1.2em;
+}
+.entry-content h5 {
+	padding: .8em 0;
+	font-size: 1.1em;
+}
+.entry-content h6 {
+	padding: .8em 0;
+	font-size: 1em;
+}
+
+.page-link, .entry-utility {
+	clear: both;
+	margin: 10px 0;
+}
+
+.sticky  {
+	/* CSS styles for sticky posts */
+}
+
+
+/************************************************
+* COMMENT *
+************************************************/
+
+#comments, .entry-utility {
+	background: url(images/boxes-bg.jpg) #FFF repeat-x;
+	border:solid 1px #d1d1d1;
+	padding: 5px;
+}
+
+textarea#comment {
+	height:13em;
+	margin:0 0 0.5em;
+	overflow:auto;
+	width:98%;
+}
+#comments {
+	clear: both;
+	margin: 10px 0 10px 0;
+}
+
+.comments {
+	padding: 0;
+}
+
+.comments li {
+	margin: 0 0 8px 0;
+	border-left: 1px solid #ccc;
+}
+
+.commentsol{
+	margin: 0;
+	padding: 0;
+}
+
+.comments .children {
+	list-style: none;
+}
+
+.comment-content li {
+	border: none;
+}
+
+#comments ul.comment-list li.comment {
+	background: url(images/blacktrans.png);
+	clear: both;
+}
+
+.comment-content {
+	background:url(images/boxes-bg.jpg) #FFF repeat-x;
+	border: 1px solid #ddd;
+	border-right-color: #ccc;
+	border-bottom-color: #ccc;
+	padding: 0 4px;
+	margin: 4px 5px;
+}
+
+#comments img.avatar {
+	float: left;
+	margin: 0 10px 0 2px;
+	width: 35px;
+	height: 35px;
+	-moz-box-shadow: 10px 10px 10px #777;
+	-webkit-box-shadow: 10px 10px 10px #777;
+	box-shadow: 10px 10px 10px #777;
+}
+
+#comments .comment-content p {
+	line-height: 1.4em;
+}
+
+.comment-reply-link, .comment-author {
+	margin: 0  0 0 3px;
+}
+
+form#commentform span.required {
+	background:#fff;
+	color:#c30;
+}
+
+form#commentform,
+form#commentform p {
+	padding:0;
+}
+
+input#author,
+input#email,
+input#url,
+textarea#comment {
+	padding:0.2em;
+}
+
+.bypostauthor {
+	background: #eff8fd;
+	background: -moz-linear-gradient(-45deg,  #eff8fd 39%, #dcf2fc 77%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(39%,#eff8fd), color-stop(77%,#dcf2fc));
+	background: -webkit-linear-gradient(-45deg,  #eff8fd 39%,#dcf2fc 77%);
+	background: -o-linear-gradient(-45deg,  #eff8fd 39%,#dcf2fc 77%);
+	background: -ms-linear-gradient(-45deg,  #eff8fd 39%,#dcf2fc 77%);
+	background: linear-gradient(-45deg,  #eff8fd 39%,#dcf2fc 77%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff8fd', endColorstr='#dcf2fc',GradientType=1 );
+}
+
+.byuser {
+    /* CSS styles for registered users comments */
+}
+	
+/************************************************
+* SIDEBAR WIDGET AREAS *
+************************************************/
+
+.widget-area ul {
+	list-style: none;
+	margin-left: 0;
+}
+.widget-area ul ul {
+	list-style: none;
+	margin-left: 1.1em;
+}
+.widget-area ul ul ul {
+	margin-left: 2.5em;
+}
+.widget-container {
+	margin: 0 0 1.5em 0;
+}
+
+.widget-container,
+.xoxo {
+	margin: 0 0 15px;
+	padding: 0 10px 15px;
+	background: url(images/boxes-bg.jpg) #FFF repeat-x;
+	border: 1px solid #ddd;
+	border-right-color: #ccc;
+	border-bottom-color: #ccc;
+	}
+	
+.widget-title {
+	font-size: 14px;
+	padding: 10px 0 5px;
+	margin-top: 0;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.widget-area #searchbox {
+	margin: 25px 0 0 50px;
+	width: 180px;
+}
+
+/************************************************
+* CALENDAR *
+************************************************/
+
+#wp-calendar{
+	width:100%;
+}
+
+#wp-calendar #today {
+	background: #D3D3D3;
+}
+
+#wp-calendar tbody a {
+	font-weight:bolder;
+}
+
+#wp-calendar caption {
+	font-family:Georgia,"Times New Roman",Times,serif;
+	padding-bottom:5px;
+	letter-spacing:-0.05em;
+	font-size:150%;
+}
+
+#wp-calendar th,
+#wp-calendar td {
+	text-align:center;
+}
+
+#wp-calendar tbody td {
+	border:0 none;
+}
+
+#wp-calendar tbody td.pad {
+	border:0 none;
+}
+
+#wp-calendar th {
+	background:#999;
+	color:#fff;
+}
+
+#wp-calendar td#prev {
+	text-align:left;
+	padding-top:5px;
+}
+
+#wp-calendar td#next {
+	text-align:right;
+	padding-top:5px;
+}
+
+/************************************************
+* FOOTER *
+************************************************/
+
+#footer {
+    clear: both;
+    width: 100%;
+	border-top: 1px solid gray;
+	background: #fff;
+	-webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-ms-transition:all 0.2s  ease-in-out;
+	-ms-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;border-radius:3px;
+}
+
+#site-info {
+	clear: both;
+	text-align: center;
+	border-top: 1px solid gray;
+}
+
+#footer p {
+	line-height: 1.5em;
+	padding: .2em 0 .8em 0;
+}
+
+/* ----------- Widgets ------------ */
+
+#footer .footleft {
+	float: left;
+	width: 300px;
+	margin: 10px 0 10px 16px;
+	display: inline;
+	border: 1px solid #ccc;
+	background:url(images/boxes-bg.jpg) #FFF repeat-x;
+}
+#footer .footmiddle {
+	float: left;
+	width: 300px;
+	margin: 10px 13px 10px 14px;
+	border: 1px solid #ccc;
+	background:url(images/boxes-bg.jpg) #FFF repeat-x;
+}
+#footer .footright {
+	float: left;
+	width: 300px;
+	margin: 10px 0 10px 0;
+	border: 1px solid #ccc;
+	background:url(images/boxes-bg.jpg) #FFF repeat-x;
+}
+#footer h3 {
+	font-weight: normal;
+	font-size: 14px;
+	margin-bottom: .4em;
+	text-transform: uppercase;
+}
+
+#footer ul li {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+#footer ul ul li {
+	line-height: 1.5em;
+	padding: 0 0 0 10px;
+	margin-bottom: 4px;
+	background: url(images/whitetrans.png);
+}
+#footer li a {
+	display: block;
+	font-weight: normal;
+	padding: 2px 5px;
+}
+
+#footer .widget_tag_cloud a {
+	display: inline;
+}
+
+#footer .widget_calendar {
+ margin: 0 30px 0 0;
+}
+
+#footer ul {
+list-style: none;
+}
+
+/************************************************
+* OTHERS *
+************************************************/
+
+/* ----------- Paging ------------ */
+
+ul.paging {
+    margin:0;
+    padding:0;
+    float:left;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+ul.paging li {
+    margin:0;
+    padding:0;
+    display:inline;
+    margin-right:4px;
+}
+ul.paging li a {
+    color:#000;
+    padding:2px 7px 4px 7px;
+    width:20px;
+    height:20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius:5px;
+    border:1px solid #eeeeee;
+	background: grey;
+}
+ul.paging a.active, ul.paging a:hover, ul.paging a.current {
+    background:#008099;
+    color:#fff;
+}
+
+.paging span, .pagination a {
+color: #000;
+background: grey;
+}

@@ -1,0 +1,283 @@
+/*
+
+Theme Name: Skills Conference
+Theme URI: http://carringtontheme.com
+Description: A <strong>Just Add Markup</strong> (JAM) theme using the Carrington CMS theme framework. Designers and developers can use this as a base, then add their own markup around the core functionality. 
+Version: 1.4
+Author: Crowd Favorite
+Author URI: http://crowdfavorite.com
+Tags: customizable, template, framework, carrington, cms, example
+
+// This file is part of the Carrington JAM Theme for WordPress
+// http://carringtontheme.com
+//
+// Copyright (c) 2008-2009 Crowd Favorite, Ltd. All rights reserved.
+// http://crowdfavorite.com
+//
+// Released under the GPL license
+// http://www.opensource.org/licenses/gpl-license.php
+//
+// **********************************************************************
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+// **********************************************************************
+
+NOTE: This file is not used in this theme but is included for WordPress theme expected format compatibility - it's standard to use the css/ dir for actual theme CSS in a Carrington-based theme.
+
+*/
+
+/* including for compatibility */
+
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	color: #000;
+	list-style-position: inside;
+	list-style-type: square;
+}
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+.clear {
+	clear: both;
+	font-size: 0%;
+	line-height: 0%;
+	height: 0;
+}
+ul, ol {
+	list-style: none;
+}
+a {
+	outline: none;
+	color: #000;
+}
+a:hover {
+	text-decoration: none;
+	color: #7C2128;
+}
+body {
+	font-family: Calibri;
+	font-size: 100%;
+	line-height: 1em;
+	color: #231f20;
+	background-image: none;
+	background-color: #FFF;
+	background-repeat: no-repeat;
+}
+.col-1, .col-2, .col-3, .col-4 {
+	float: left;
+	position: relative;
+	overflow: hidden;
+	height: 1500px;
+}
+#main-tail {
+	background-image: none;
+	background-color: #FFF;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center bottom;
+}
+#main {
+	width: 970px;
+	margin: 0 auto;
+	font-size: 0.75em;
+}
+#header {
+	position: relative;
+	height: 266px;
+	background-image: url(images/SkillsDMCBanner.jpg);
+	background-repeat: no-repeat;
+}
+#navi {
+	position: absolute;
+	top: 1px;
+	right: 3px;
+	width: 254px;
+	color: #5C8FC2;
+}
+#navi li {
+	background: url(images/navi-divider.gif) no-repeat 100% 2px;
+	float: left;
+	padding: 0 7px 0 8px;
+	font-size: 0.917em;
+	color: #ffffff;
+}
+#navi li a {
+	color: #fff;
+}
+#content {
+	padding: 0;
+	background-color: #FFF;
+}
+#footer {
+	padding: 15px;
+	background-color: #36434b;
+}
+#footer p {
+	text-align: center;
+	font-size: 0.917em;
+	color: #fff;
+}
+.Table2 {
+	background-color: #FFFFFF;
+	color: #000;
+	border: thin none #FFF;
+	text-align: left;
+	vertical-align: middle;
+	text-indent: 10px;
+	padding: 0px;
+	background: #006295;
+	text-decoration: none;
+}
+.Header2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #000;
+}
+.SoldSponsorship {
+	color: #F00;
+}
+.SmallText {
+	font-size: 11px;
+	text-align: center;
+}
+.PageHeading {
+	color: #7c2128;
+	font-size: 1.2em;
+	font-family: Helvetica, Arial, sans-serif;
+}
+.Centred {
+	text-align: center;
+}
+.convenor {
+	font-size: small;
+	text-align: center;
+}
+.firstparagraph {
+	color: #000;
+	font-size: small;
+	font-weight: bold;
+}
+.bold {
+	font-weight: bold;
+}
+.bold {
+	font-size: small;
+}
+#page1 .line-ver {background-position: 900px 0%;}
+#page1 .col-1 {
+	width: 200px;
+	padding: 30px 10px 10px 10px;
+	background-color: #FFF;
+}
+#page1 .col-2 {
+	width: 510px;
+	padding: 30px 10px 10px 10px;
+	background-color: #FFF;
+}
+#page1 .col-3 {
+	width: 200px;
+	padding: 30px 10px 10px 10px;
+	background-color: #FFF;
+}
+
+#page1 .col-2 .block-1 {width: 212px; padding: 0 40px 0 0;}
+#page1 .col-2 .block-2 {width: 221px;}
+/* 
+  -----------------------------------
+  PopMenu Magic Style Sheet
+  by Project Seven Development
+  www.projectseven.com
+  Menu Type: Vertical
+  Style Theme:0 -Basic Style
+  -----------------------------------
+*/
+#p7PMnav {
+	margin: 0;
+	padding:0;
+}
+#p7PMnav li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#p7PMnav ul {
+	margin: 0;
+	padding: 0;
+	z-index: 10000;
+}
+#p7PMnav a {
+	display: block;
+	text-decoration: none;
+	background-color: #54071b;
+	padding: 10px 10px;
+	color: #FFFFFF;
+	line-height:1;
+}
+#p7PMnav a:hover, #p7PMnav a:active, #p7PMnav a:focus {
+	background-color: #36434b;
+	color: #FFF;
+	letter-spacing: 0.01px;
+	text-decoration: none;
+	font-weight: none;
+	font-size: small;
+}
+
+/* ------ the current page marker style ------ */
+#p7PMnav .p7PMmark {
+	background-color: #36434b;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: small;
+}
+/* ------ the trigger link styles ------- */
+
+/*the normal trigger link */
+#p7PMnav .p7PMtrg, #p7PMnav .p7PMon {
+	background-image:  none;
+	background-repeat: repeat-x;
+	background-position: center;
+}
+/* the active trigger link style */
+#p7PMnav .p7PMon {
+	background-color: #444f51;
+	color: #CCCCCC;
+}
+
+/*the submenu classes */
+
+#p7PMnav .p7PMhide {
+	left: -9000px;
+	border: 0;
+}
+#p7PMnav .p7PMshow {
+	left: auto;
+	z-index: 20000 !important;
+}
+/* Top level menu width */
+#p7PMnav {
+	width: 200px;
+}
+/* 2nd and subsequent Submenu widths */
+#p7PMnav ul {
+	width: 180px;
+}
+#pmmcrumb {
+	font-weight: bold;
+	margin-bottom: 16px;
+	color: #333333;
+}
+#pmmcrumb a, #pmmcrumb a:visited {
+	font-weight: normal;
+	color: #n00537F;
+}
+#pmmcrumb a:hover, #pmmcrumb a:active, #pmmcrumb a:focus {
+	font-weight: normal;
+	color: #7C2128;
+}
