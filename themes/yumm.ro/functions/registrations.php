@@ -147,19 +147,18 @@ add_action( 'init', 'register_one',0);
 			</p>
 
 		<label>Program : </label>
-		<input type="text" id="yumm-program" value="<?php echo $program ?>" name="yumm-program" class="large-text" />
+		<textarea  name="yumm-program" class="large-text" ><?php echo $program ?></textarea>
 			<p class="description">
 				<?php _e( 'This program will appear automatically on restaurant details', 'carrington-jam' ) ?>
 			</p>
 
 		<label>Price : </label>
-		<input type="text" id="yumm-price" value="<?php echo $price ?>" name="yumm-price" class="large-text" />
-			<p class="description">
+		<textarea  name="yumm-price" class="large-text" ><?php echo $price ?></textarea>
 				<?php _e( 'This price will appear automatically on restaurant details', 'carrington-jam' ) ?>
 			</p>
 
 		<label>Phone : </label>
-		<input type="text" id="yumm-phone" value="<?php echo $phone ?>" name="yumm-phone" class="large-text" />
+		<textarea  name="yumm-phone" class="large-text" ><?php echo $phone ?></textarea>
 			<p class="description">
 				<?php _e( 'This phone will appear automatically on restaurant details', 'carrington-jam' ) ?>
 			</p>
@@ -169,6 +168,14 @@ add_action( 'init', 'register_one',0);
 
 	function produs_metabox(){
 
+		global $post;
+
+		$prices = get_post_meta($post->ID, 'prices', true);
+		if (!empty($prices))
+            $prices = array_values($prices);
+        $total_prices = count ($prices);
+
+var_dump_pre($prices);
 		?>
 
 		<label>Ingredients : </label>
@@ -178,6 +185,64 @@ add_action( 'init', 'register_one',0);
 				<?php _e( 'This ingredients will appear automatically on restaurant details', 'carrington-jam' ) ?>
 			</p>
 
+
+			<p>Prices :</p>
+		<p>
+			Price	<input type="text" id="price" name="price" size="30" />
+		</p>
+		<p>
+			Quantity	<input type="text" id="quantity" name="quantity" size="30" />  
+		</p>
+		<input type="button" id="Add_price" value="Add price" />
+
+		<p id="price_error">
+	
+		<div id="link_list" class="tagchecklist">
+			<input type="hidden" name="total_prices" id="total_prices" value="<?php echo $total_prices; ?>" />
+			<?php 
+ 				if(!empty($prices))
+					foreach ($prices as $key=>$price){
+				?>
+					<p id="price-<?php echo $key;?>"> 
+					<span><a class="ntdelbutton" onclick="delete_price(<?php echo $key;?>)">X</a></span>
+					<?php echo '<span>'.$price['quantity'].'</span><span>:'.$price['price'].'</span>';?> 
+					<input type="hidden" name="prices[<?php echo $key;?>][quantity]" value="<?php echo $price['quantity']?>" />
+					<input type="hidden" name="prices[<?php echo $key;?>][price]" value="<?php echo $price['price']?>" />
+					</p>
+				<?php
+					}
+		?>
+		</div>
+		<script>
+jQuery( document ).ready( function($) {
+	$('#Add_price').click(function(){
+
+		var price		=	$("#price").val();
+		var quantity		=	$("#quantity").val();
+			if( price.length ==0 || quantity.length ==0 ){
+				$("#price_error").html('Complete all fields.');
+			}
+			else{
+				$("#price_error").html("");
+				var total_prices	=	$("#total_prices").val();
+
+				alert(total_prices);
+				$('#link_list').append("<p id='price-"+total_prices+"'><span><a class='ntdelbutton' onclick='delete_price("+total_prices+")'>X</a></span> <span>"+price+"</span><span>:"+quantity+"</span><input type='hidden' name='prices["+total_prices+"][price]' value='"+price+"'/> <input type='hidden' name='prices["+total_prices+"][quantity]' value='"+quantity+"'/></p>");
+// 		alert('here');
+				total_prices=parseInt(total_prices)+1;
+				$("#total_prices").val(total_prices);
+				var price=$("#price").val('');
+				var quantity=$("#quantity").val('');
+			}
+	});
+
+});
+
+function delete_price(link_nr){
+
+	jQuery('#price-'+link_nr).remove();
+}			
+</script>
 		<?php
 
 	}
@@ -236,6 +301,20 @@ add_action( 'init', 'register_one',0);
                         return $post_id;
                 }
                 delete_post_meta($post_id, 'yumm-phone');
+            }
+		}
+
+
+		if($_POST['post_type'] == 'produs'){
+
+
+			if (!empty($_POST['prices'])) {
+                    update_post_meta($post_id, 'prices', $_POST['prices']);
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                    delete_post_meta($post_id, 'prices');
             }
 		}
 	}
