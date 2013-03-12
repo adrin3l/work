@@ -1,7 +1,13 @@
 <?php
+
+
 add_action( 'init', 'register_types',0);
 
  function register_types() {
+
+ 		global $wp;
+
+		//add_rewrite_rule( '(.*)/(.*)/?', 'index.php?oras=$matches[1]&$matches[2]', 'top' );
 
 		// Register custom post types
 		register_post_type( 'restaurant', array(
@@ -70,6 +76,9 @@ add_action( 'init', 'register_types',0);
  			'query_var' => true,
  			'rewrite' => true,
 	));
+
+ 	// add_rewrite_rule( '(.*)/', 'index.php?oras=$matches[1]', 'top' );
+ 	// add_rewrite_rule( '(.*)/(.*)/', 'index.php?oras=$matches[1]&pagename=$matches[2]', 'top' );
 }
 add_action( 'init', 'register_one',0);
 
@@ -115,6 +124,14 @@ add_action( 'init', 'register_one',0);
 				'produs_metabox',
 				'produs' ,
 				'normal',
+				'low'
+				);		
+		add_meta_box( 
+				'Restaurant & Meniu',
+				'Restaurant & Meniu' ,
+				'produs_taxonomies',
+				'produs' ,
+				'side',
 				'low'
 				);		
 
@@ -170,12 +187,13 @@ add_action( 'init', 'register_one',0);
 
 		global $post;
 
+		$ingredients = get_post_meta($post->ID, 'ingredients', true);
 		$prices = get_post_meta($post->ID, 'prices', true);
 		if (!empty($prices))
             $prices = array_values($prices);
         $total_prices = count ($prices);
 
-var_dump_pre($prices);
+// var_dump_pre($prices);
 		?>
 
 		<label>Ingredients : </label>
@@ -226,7 +244,7 @@ jQuery( document ).ready( function($) {
 				$("#price_error").html("");
 				var total_prices	=	$("#total_prices").val();
 
-				alert(total_prices);
+				// alert(total_prices);
 				$('#link_list').append("<p id='price-"+total_prices+"'><span><a class='ntdelbutton' onclick='delete_price("+total_prices+")'>X</a></span> <span>"+price+"</span><span>:"+quantity+"</span><input type='hidden' name='prices["+total_prices+"][price]' value='"+price+"'/> <input type='hidden' name='prices["+total_prices+"][quantity]' value='"+quantity+"'/></p>");
 // 		alert('here');
 				total_prices=parseInt(total_prices)+1;
@@ -244,6 +262,25 @@ function delete_price(link_nr){
 }			
 </script>
 		<?php
+
+	}
+
+	function produs_taxonomies(){
+
+		global $post;
+		var_dump_pre($post);
+		$args=array(
+				  'post_type' => 'restaurant',
+				  'post_status' => 'publish',
+				  'numberposts' => -1
+				);
+		$restaurants = get_posts($args);
+		if($post->parent != 0 ){
+
+
+			
+		}
+		var_dump_pre($restaurants);
 
 	}
 
@@ -315,8 +352,112 @@ function delete_price(link_nr){
                             return $post_id;
                     }
                     delete_post_meta($post_id, 'prices');
+            }if (!empty($_POST['yumm-ingredients'])) {
+                    update_post_meta($post_id, 'ingredients', $_POST['yumm-ingredients']);
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                    delete_post_meta($post_id, 'yumm-ingredients');
             }
 		}
 	}
+
+	add_filter('term_link', 'yum_taxonomies_link',10,3);
+	function yum_taxonomies_link($link, $term, $taxonomy ){
+
+		if($taxonomy == 'oras'){
+
+			$link = str_replace('oras/', '', $link );			
+
+		}
+		return $link;
+
+	}
+
+ 	add_filter('post_type_link','yum_post_types_link',10,3);
+
+ 	function yum_post_types_link($link,$post_id, $leavename){
+ 		$parts=explode('/',$link);
+		if($parts[3]=='restaurant'){
+
+			$term=wp_get_object_terms($post_id->ID,'oras');
+				if(empty($term))
+					$replace_link='/';
+				else{
+
+					$replace_link='/'.$term[0]->slug.'/';	
+				}
+		}
+		$link=str_replace('/restaurant/', $replace_link, $link);
+ 		//var_dump_pre($link);
+
+		return $link;
+
+
+ 	}
+	
+	add_filter('request', 'yumm_handle_request' );
+
+	function yumm_handle_request($request){
+
+		global $wp_rewrite, $wp;
+		
+		if ( isset( $request['pagename'] ) ) {
+
+			$term = term_exists($request['pagename'],'oras');
+			if ($term !== 0 && $term !== null) {
+
+				$request['oras']=$request['pagename'];
+				unset($request['pagename']);
+				unset($request['page']);
+			}
+			var_dump_pre($term);
+		}
+
+		if ( isset( $request['pagename'] ) ) {
+
+			$parts = explode('/',$request['pagename']);
+			if(count($parts) == 2){
+				$args=array(
+				  'name' => $parts[1],
+				  'post_type' => 'restaurant',
+				  'post_status' => 'publish',
+				  'numberposts' => 1
+				);
+				$restaurant = get_posts($args);
+				if($restaurant){
+
+					$request['post_type'] = 'restaurant';
+					$request['name']= $parts[1];
+					unset($request['pagename']);
+				}
+			}
+
+		}
+
+		var_dump_pre($request);
+		return $request;
+	}
+
+
+	add_action( 'admin_menu', 'yumm_remove_meta_boxes' );
+
+	function yumm_remove_meta_boxes(){
+
+
+		remove_meta_box('meniudiv', 'produs', 'normal');
+	}
+
+	add_action ('template_redirect', "debug_redirect");
+
+	function debug_redirect(){
+
+
+	global $wp, $wp_rewrite;
+
+	var_dump_pre($wp->matched_rule);
+	var_dump_pre($wp->request);
+}
 
 ?>
