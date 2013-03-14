@@ -20,12 +20,22 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); }
 load_theme_textdomain('carrington-jam');
 add_theme_support( 'post-thumbnails' );
 
-define('CFCT_DEBUG', true);
+define('CFCT_DEBUG', false);
 define('CFCT_PATH', trailingslashit(TEMPLATEPATH));
 
 include_once(CFCT_PATH.'carrington-core/carrington.php');
 include_once(CFCT_PATH.'functions/sidebars.php');
 include_once(CFCT_PATH.'functions/registrations.php');
 include_once(CFCT_PATH.'functions/helper.php');
+register_nav_menus( array(
+    'primary' => 'Primary' ,
+    'user_menu' =>  'Header'
+) );
 
+
+add_action ('init', 'load_scripts');
+function load_scripts(){
+	 wp_enqueue_script( 'jquery' );
+}
+ 
 ?>

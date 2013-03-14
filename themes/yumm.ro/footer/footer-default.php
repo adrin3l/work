@@ -31,5 +31,8 @@ if (CFCT_DEBUG) {
 }
 
 ?>
+<div id="footer">
+</div>
+</div>
 </body>
 </html>

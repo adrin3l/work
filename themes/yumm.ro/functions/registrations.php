@@ -195,6 +195,18 @@ add_action( 'init', 'register_one',0);
 
 // var_dump_pre($prices);
 		?>
+		<style>
+			.price span{
+
+				margin-right:10px;
+				margin-left:10px;
+			}
+			p.price{
+
+				clear:both;
+
+			}
+		</style>
 
 		<label>Ingredients : </label>
 
@@ -221,9 +233,9 @@ add_action( 'init', 'register_one',0);
  				if(!empty($prices))
 					foreach ($prices as $key=>$price){
 				?>
-					<p id="price-<?php echo $key;?>"> 
+					<p id="price-<?php echo $key;?>" class="price"> 
 					<span><a class="ntdelbutton" onclick="delete_price(<?php echo $key;?>)">X</a></span>
-					<?php echo '<span>'.$price['quantity'].'</span><span>:'.$price['price'].'</span>';?> 
+					<?php echo '<span>'.$price['quantity'].'</span> <span> | '.$price['price'].'</span>';?> 
 					<input type="hidden" name="prices[<?php echo $key;?>][quantity]" value="<?php echo $price['quantity']?>" />
 					<input type="hidden" name="prices[<?php echo $key;?>][price]" value="<?php echo $price['price']?>" />
 					</p>
@@ -245,7 +257,7 @@ jQuery( document ).ready( function($) {
 				var total_prices	=	$("#total_prices").val();
 
 				// alert(total_prices);
-				$('#link_list').append("<p id='price-"+total_prices+"'><span><a class='ntdelbutton' onclick='delete_price("+total_prices+")'>X</a></span> <span>"+price+"</span><span>:"+quantity+"</span><input type='hidden' name='prices["+total_prices+"][price]' value='"+price+"'/> <input type='hidden' name='prices["+total_prices+"][quantity]' value='"+quantity+"'/></p>");
+				$('#link_list').append("<p id='price-"+total_prices+"' class='price'><span><a class='ntdelbutton' onclick='delete_price("+total_prices+")'>X</a></span> <span>"+price+"</span>  <span> | "+quantity+"</span><input type='hidden' name='prices["+total_prices+"][price]' value='"+price+"'/> <input type='hidden' name='prices["+total_prices+"][quantity]' value='"+quantity+"'/></p>");
 // 		alert('here');
 				total_prices=parseInt(total_prices)+1;
 				$("#total_prices").val(total_prices);
@@ -268,23 +280,117 @@ function delete_price(link_nr){
 	function produs_taxonomies(){
 
 		global $post;
-		var_dump_pre($post);
+		// var_dump_pre($post);
 		$args=array(
 				  'post_type' => 'restaurant',
 				  'post_status' => 'publish',
 				  'numberposts' => -1
 				);
 		$restaurants = get_posts($args);
-		if($post->parent != 0 ){
+?>
+<script>
+    jQuery(document).ready(function($){
+    	$('#restaurant').change( function() {
+			var data = {
+	                                                                                                                                                            
+		        action: 'get_terms_callback',
+		        id : $('#restaurant').val(),      
+		        produs : $('#post_ID').val()                                                                                                                                                                                                                               
+			}
 
+			$.post( ajaxurl, data, function( response ) {
+	        	$('#meniu_select').html('');
+	        	$('#meniu_select').html(response);
+			});
+		});
+    });
 
+</script>
+		<label>Restaurant :</label><br/>
+		<select id="restaurant" name="restaurant">
+			<option value="">Select Restaurant</option>
+
+<?php
+		foreach ($restaurants as $restaurant) {
+
+			if($restaurant->ID == $post->post_parent){
+
+				$selected = "selected";
+			}else{
+
+				$selected = '';
+			}
+			
+			echo "<option value='$restaurant->ID' $selected> $restaurant->post_title</option>";
+
+		}
+
+?>
+	</select>
+		<div id="meniu_select">
+<?php
+		if($post->post_parent != 0 ){
+			
+
+			$output = generate_terms_select($post->post_parent,$post->ID);
+			echo $output;
 			
 		}
-		var_dump_pre($restaurants);
+?>
+				</div>
+			<?php
+	}
+
+	add_action('wp_ajax_get_terms_callback',  'get_terms_callback');
+
+	function get_terms_callback(){
+
+		$output = generate_terms_select($_POST['id'], $_POST['produs']);
+		echo $output;
+		die();
 
 	}
 
-	add_action('wp_insert_post','yumm_save_meta');
+	function generate_terms_select($restaurant_id, $produs){
+
+
+
+
+			$args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'all');
+			$terms = wp_get_object_terms($restaurant_id, 'meniu', $args);
+			//$terms = wp_get_object_terms(array('89'), 'meniu', $args);
+
+			$args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'ids');
+			$menus = wp_get_object_terms($produs, 'meniu', $args);
+
+			?>
+				<label>Meniu :</label><br/>
+				<select id="meniu" name="meniu">
+					<option value="">Select Meniu</option>
+
+			<?php
+			foreach($terms as $term){
+
+				if($term->term_id == $menus[0]){
+					$selected = "selected ";
+				}
+				else{
+					$selected = '';
+				}
+
+				echo "<option value='$term->term_id' $selected> $term->name</option>";
+
+			}
+
+
+			?>
+				</select>
+			<?php
+
+	}
+
+
+	add_action('save_post','yumm_save_meta');
 
 	function yumm_save_meta($post_id){
 
@@ -344,7 +450,6 @@ function delete_price(link_nr){
 
 		if($_POST['post_type'] == 'produs'){
 
-
 			if (!empty($_POST['prices'])) {
                     update_post_meta($post_id, 'prices', $_POST['prices']);
             } else {
@@ -352,13 +457,51 @@ function delete_price(link_nr){
                             return $post_id;
                     }
                     delete_post_meta($post_id, 'prices');
-            }if (!empty($_POST['yumm-ingredients'])) {
+            }
+            if (!empty($_POST['yumm-ingredients'])) {
                     update_post_meta($post_id, 'ingredients', $_POST['yumm-ingredients']);
             } else {
                     if ($_POST['action'] == 'autosave') {
                             return $post_id;
                     }
                     delete_post_meta($post_id, 'yumm-ingredients');
+            }
+
+            if ($_POST['restaurant']) {
+            		$args = array('ID'=> $_POST['post_ID'],
+            						'post_parent'=>$_POST['restaurant']
+            			);
+            		remove_action('save_post', 'yumm_save_meta');
+            		wp_update_post($args);
+            		add_action('save_post', 'yumm_save_meta');
+
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                   $args = array('ID'=> $_POST['post_ID'],
+            						'post_parent'=>0
+            			);
+
+            		remove_action('save_post', 'yumm_save_meta');
+            		wp_update_post($args);
+            		add_action('save_post', 'yumm_save_meta');
+
+            }
+            if ($_POST['meniu']) {
+            		$args = array(
+            			$_POST['meniu']
+            			);
+            		$args = array_map('intval', $args);
+            		wp_set_object_terms($post_id, $args, 'meniu');
+
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                   $args = NULL;
+            		//$args = array_map('intval', $args);
+            		wp_set_object_terms($post_id, $args, 'meniu');
             }
 		}
 	}
@@ -412,7 +555,7 @@ function delete_price(link_nr){
 				unset($request['pagename']);
 				unset($request['page']);
 			}
-			var_dump_pre($term);
+			// var_dump_pre($term);
 		}
 
 		if ( isset( $request['pagename'] ) ) {
@@ -436,7 +579,7 @@ function delete_price(link_nr){
 
 		}
 
-		var_dump_pre($request);
+		// var_dump_pre($request);
 		return $request;
 	}
 
@@ -449,7 +592,7 @@ function delete_price(link_nr){
 		remove_meta_box('meniudiv', 'produs', 'normal');
 	}
 
-	add_action ('template_redirect', "debug_redirect");
+	// add_action ('template_redirect', "debug_redirect");
 
 	function debug_redirect(){
 

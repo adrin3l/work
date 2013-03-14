@@ -26,42 +26,726 @@ NOTE: This file is not used in this theme but is included for WordPress theme ex
 */
 
 /* including for compatibility */
-
-.alignleft {
-	float:left;
-	margin-right:1em;
-	margin-bottom:1em;
-}
-.alignright {
-	float:right;
-	margin-left:1em;
-	margin-bottom:1em;
-}
-.aligncenter {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-.wp-caption {
-	border: 1px solid #ddd;
-	text-align: center;
-	background-color: #f3f3f3;
-	padding-top: 4px;
-	margin: 10px;
-	/* optional rounded corners for browsers that support it */
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-.wp-caption img {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead, th,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	border: 0 none;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-.wp-caption p.wp-caption-text {
-	font-size: 11px;
-	line-height: 17px;
-	padding: 0 4px 5px;
-	margin: 0;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body{
+    background:#f3f3f3;
+}
+
+/*div{
+    border:1px solid black;
+}*/
+
+p{
+    font-family:Myriad Pro, cursive;
+    font-size: 0.9em;
+}
+
+div#header{
+    width:100%;
+    height:30%;
+    float:left;
+    background:#0478AC;
+    padding:2em 0em;
+}
+
+div#mini-wrap, div#main-menu{
+    margin:0 auto;
+    width:960px;
+}
+
+a#logo{
+    float:left;
+    padding-right:1.5em;
+}
+
+p#slogan{
+    color:#fff;
+    font-family: Myriad Pro, cursive;
+    font-size:1.5em;
+    float:left;
+    width:40%;
+    margin-top:1em;
+}
+
+p#apreciaza{
+    transform:rotate(-5deg);
+    -ms-transform:rotate(-5deg); /* IE 9 */
+    -moz-transform:rotate(-5deg); /* Firefox */
+    -webkit-transform:rotate(-5deg); /* Safari and Chrome */
+    -o-transform:rotate(-5deg); /* Opera */
+    float:left;
+    width:20%;
+    color:white;
+    font-size:1.5em;
+    padding-top:1.7em;
+    padding-left: 1.5em;
+    margin-left:1.5em;
+}
+
+div#wrapper{
+    width:960px;
+    margin:0 auto;
+}
+
+div#main-menu{
+    z-index:1;
+    position: absolute;
+    margin-top:8em;
+    background:#fff;
+    text-transform: uppercase;
+    box-shadow: 0px 5px 3px #ccc;
+}
+
+div#main-menu ul{
+    float: left;
+    margin-top:15px;
+}
+
+div#main-menu li {
+    display:inline;
+}
+
+.navi a{
+    text-decoration: none;
+    color: #0478AC;
+    font-family: Myriad Pro, cursive;
+    font-size:1.5em;
+    padding:0.3em;
+    margin:10px;
+}
+
+.navi a:hover{
+    background:#ff144b;
+    color:#fff;
+}
+
+
+div#social{
+    float:right;
+    margin-top:-10px;
+    padding-right:50px;
+}
+
+div#social img{
+    display: inline;
+}
+
+div#cauta{
+    width:100%;
+    float:left;
+    background:#ff144b;
+    margin-top:2.5em;
+    margin-bottom:1em;
+    padding-bottom:1em;
+    padding-top:0.5em;
+}
+
+div#unde,div#ce,div#find{
+    float:left;
+    width:31%;
+}
+
+label{
+    color:#fff;
+    font-family: Myriad Pro, cursive;
+    font-size:1.5em;
+}
+
+select{
+    height:35px;
+    width:250px;
+    font-family: Myriad Pro, cursive;
+    font-size:1.4em;
+    margin-top:10px;
+    border-radius:5px;
+    border:1px solid grey;
+}
+
+a#gaseste{
+    border-radius:5px;
+    padding:5px 25px;
+    color:#93470A;
+    background: #fcd32d; /* Old browsers */
+    background: -moz-linear-gradient(top, #fcd32d 0%, #eec72b 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcd32d), color-stop(99%,#eec72b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fcd32d 0%,#eec72b 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fcd32d 0%,#eec72b 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fcd32d 0%,#eec72b 99%); /* IE10+ */
+    background: linear-gradient(to bottom, #fcd32d 0%,#eec72b 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcd32d', endColorstr='#eec72b',GradientType=0 ); /* IE6-9 */
+    border:1px solid #bb9d22;
+    text-decoration: none;
+    font-family: Myriad Pro, cursive;
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+a:hover#gaseste{
+    background: #eec72b; /* Old browsers */
+    background: -moz-linear-gradient(top, #eec72b 1%, #fcd32d 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#eec72b), color-stop(100%,#fcd32d)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #eec72b 1%,#fcd32d 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #eec72b 1%,#fcd32d 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #eec72b 1%,#fcd32d 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #eec72b 1%,#fcd32d 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eec72b', endColorstr='#fcd32d',GradientType=0 ); /* IE6-9 */
+}
+
+div#find{
+    margin-top:38px;
+    margin-left:20px;
+}
+
+div#unde,div#ce{
+    margin-left:20px;
+}
+
+div#cine-suntem{
+    float:left;
+    width:60%;
+    display: inline;
+    background:#04ACE1;
+    padding-left:10px;
+    padding-right:15px;
+    height:407px;
+    margin-bottom:10px;
+}
+
+h2{
+    font-family: Myriad Pro, cursive;
+    color:white;
+    font-size:2em;
+    margin:10px 0;
+    font-weight: bold;
+}
+
+p.normal{
+    color:white;
+    font-size:1.4em;
+    margin-top:20px;
+}
+
+h2#slid{
+    color:#ff144b;
+    padding-left:10px;
+}
+
+div#cum-functioneaza{
+    float:right;
+    width:35%;
+    display: inline;
+    background:#1A3249;
+    padding-left:10px;
+}
+
+
+div#number, div#text{
+    z-index: 1;
+    position: relative;
+    color:#fff;
+    font-family: Myriad Pro, cursive;
+}
+
+div#number{
+    font-size:4em;
+    font-weight: bold;
+    width:15%;
+    padding-left: 10px;
+    padding-top: 15px;
+    margin-top:-250px;
+    clear:left;
+}
+
+div#number li{
+    margin-bottom:15px;
+}
+
+div#text{
+    width:70%;
+    font-size: 1.4em;
+    margin-top:-250px;
+    padding-left:60px;
+    padding-top: 20px;
+    float:left;
+}
+
+div#text li{
+    list-style-type: none;
+    margin-bottom:35px;
+}
+
+img#fundal{
+    position: relative;
+    z-index:0;
+
+}
+
+h2#pofta-buna{
+    color:#fcd32d;
+    margin-top:27px;
+    margin-bottom:53px;
+}
+
+table{
+    margin-right:15px;
+    z-index:1;
+    position: relative;
+    top:5px;
+}
+
+td{
+    color:#fff;
+    font-family: Myriad Pro, cursive;
+}
+
+td.number{
+    font-size:4em;
+    font-weight: bold;
+}
+td.text{
+    font-size:1.3em;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+h2#functioneaza{
+    margin-bottom:15px;
+}
+
+div#slider{
+    clear:left;
+    width:100%;
+    background: #fff;
+    z-index:0;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+/** 
+ * Slideshow style rules.
+ */
+#slideshow {
+    margin:0 auto;
+    width:950px;
+    height:263px;
+    position:relative;
+}
+#slideshow #slidesContainer {
+    margin:0 auto;
+    width:865px;
+    height:300px;
+    overflow:auto; /* allow scrollbar */
+    position:relative;
+    float: left;
+}
+#slideshow #slidesContainer .slide {
+    margin:0 auto;
+    width:865px; /* reduce by 20 pixels of #slidesContainer to avoid horizontal scroll */
+    height:300px;
+}
+
+#slideshow #slidesContainer .oferta{
+    width:254px;
+    float:left;
+}
+
+/** 
+ * Slideshow controls style rules.
+ */
+.control {
+    width:39px;
+    height:263px;
+    text-indent:-10000px;
+    position:absolute;
+    cursor: pointer;
+}
+#leftControl {
+    top:0;
+    left:0;
+    float:left;
+    cursor: pointer;
+
+}
+#rightControl {
+    top:0;
+    right:0;
+    float: right;
+    cursor: pointer;
+}
+
+/** 
+ * Style rules for Demo page
+ */
+
+
+.oferta h2, .oferta p {
+  clear: left;
+}
+
+.valabil{
+    color:#ff144b;
+    font-weight: bold;
+    margin-top:10px;
+}
+
+.margin{
+    margin-right:25px;
+}
+
+.first{
+    margin-left:25px;
+}
+
+.oferta h2 {
+  font:bold 30px Myriad Pro, "Times New Roman", Times, serif;
+  color:black;
+  letter-spacing:-1px;
+}
+.oferta img {
+  float:left;
+  margin:0;
+}
+
+
+div#pizza, div#chinese, div#shaorma, div#logo-footer{
+    width:17%;
+    float:left;
+}
+
+div#pizza ul, div#chinese ul , div#shaorma ul{
+    padding-left:0;
+    padding-right: 10px;
+}
+
+div#pizza li, div#chinese li , div#shaorma li{
+    list-style-type: none;
+}
+
+div#pizza a, div#chinese a , div#shaorma a{
+    text-decoration:none;
+    font-family: Myriad Pro, cursive;
+    color:#3f3f3f;
+}
+
+div#pizza a:hover, div#chinese a:hover , div#shaorma a:hover{
+    text-decoration: underline;
+}
+
+p#comanda{
+    font-size:1.2em;
+    color:#3f3f3f;
+    font-weight: bold;
+    margin-bottom:10px;
+}
+
+div#logo-footer{
+    width:30%;
+    color:#3f3f3f;
+}
+
+div#logo-footer a{
+    color:#3f3f3f;
+}
+
+div#logo-footer a:hover{
+    text-decoration:none;
+}
+
+p#copyright{
+    font-size:0.9em;
+    margin-bottom:20px;
+}
+
+div#footer{
+    width:100%;
+    clear:left;
+    bottom:20px;
+    padding-top:10px;
+}
+
+div#bara-img{
+    clear: left;
+    background:#fff;
+    font-family: Myriad Pro, cursive;
+    text-align: center;
+    margin-top:20px;
+}
+
+div#content{
+    background:#fff;
+    float: left;
+    width:100%;
+}
+
+div#bucatarii{
+    float:left;
+    padding-bottom:20px;
+    padding-top:5px;
+    width:940px;
+    margin-left:10px;
+}
+
+h4.oras{
+    background: #04ACE1;
+    color:white;
+    font-family: Myriad Pro, cursive;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+ul.bucatarie{
+    list-style-type: none;
+}
+
+ul#col1{
+    float: left;
+    padding-right: 40px;
+    padding-left: 20px;
+}
+
+ul#col2{
+    float:left;
+}
+
+div#toate-meniurile{
+    float:left;
+    width:940px;
+    margin-left:10px;
+}
+
+
+ul.bucatarie a{
+    font-size:1em;
+    color:black;
+    font-family: Myriad Pro, cursive;
+}
+
+div.instance{
+    font-family: Myriad Pro, cursive;
+    background: white;
+    padding: 5px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+div.instance:hover{
+    box-shadow: 0 0 5px #ccc;
+}
+
+div.img,div.date-restaurant,div.cost, div.telefon,div.program{
+    float:left;
+    height: 95px;
+}
+
+div.cost, div.telefon,div.program{
+    width:15%;
+}
+
+.program,.cost, .telefon{
+    color:white;
+    text-align: center;
+    width:20%;
+}
+
+.program{
+    background: #04ACE1;
+}
+
+.cost{
+    background: #0580B1;
+}
+
+.telefon{
+    background: #0475AA;
+}
+
+.program p,.telefon p{
+    font-size:1.2em;
+}
+
+.program p{
+    margin-top:20px;
+}
+
+p#buc{
+    margin-top:10px;
+    float: left;
+    margin-right:15px;
+}
+
+.white{
+    color:white;
+    font-size: 1.3em;
+}
+
+img.slice{
+    padding-top:5px;
+    float:left;
+}
+
+.trio{
+    width:120%;
+ }
+
+div.date-restaurant{
+    width:35%;
+    padding-left: 10px;
+}
+
+h3{
+    color:#04ACE1;
+    font-size:1.5em;
+    margin-bottom: 5px;
+    padding-top: 5px;
+}
+
+.img{
+    width:10%;
+}
+
+div#meniu-pizza,div#local{
+    background: #fff;
+    float: left;
+    width:960px;
+}
+
+div#meniu-pizza-inside{
+    width:940px;
+    margin-left:10px;
+    margin-top:10px;
+}
+
+div#wrapp2{
+    width:100%;
+    margin:0 auto;
+}
+
+h3#local{
+    font-family: Myriad Pro, cursive;
+    color:black;
+    padding-left:10px;
+}
+
+div#meniu-delivery{
+    padding: 10px;
+}
+
+div#meniu-delivery li{
+    display: inline;
+    border:1px solid #ccc;
+    margin-right: 5px;
+    height: 45px;
+    padding-top: 18px;
+    padding-right:10px;
+}
+
+div.pizza{
+    float:left;
+    width:45%;
+    margin-top:20px;
+    margin-bottom:10px;
+}
+p.descriere{
+    margin-bottom: 40px;
+}
+
+h3.pizza-nume{
+    color:#000;
+}
+
+div.imagine{
+    float:left;
+    display: inline;
+    border:1px solid #ccc;
+    margin-left: 10px;
+}
+
+div.pret{
+    background: #ff144b;
+    text-align: center;
+    color:white;
+    display: inline-block;
+    margin-right:5px;
+    padding: 5px 30px;
+    font-family: Myriad Pro, cursive;
+}
+
+div.right-side{
+    float: left;
+    width:55%;
+    height:145px;
+    padding-left: 20px;
+}
+
+div#meniu-delivery a{
+    text-decoration: none;
+    color:black;
+    display: inline;
+    font-family: Myriad Pro, cursive;
+    font-size:1.3em;
+}
+
+div#meniu-delivery a:active{
+    text-transform: uppercase;
+}
+
+div#meniu-delivery li:active{
+    border:1px solid #ff144b;
+}
+
+p#ultima-modificare{
+    color:#888;
+    padding:10px;
+    clear: left;
+    font-size:1.1em;
+}
+
+div#despre{
+    width:940px;
+    margin-left: 10px;
+    margin-top:10px;
 }
