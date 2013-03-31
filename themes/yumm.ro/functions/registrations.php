@@ -1,5 +1,7 @@
 <?php
+//add link manager
 
+add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
 add_action( 'init', 'register_types',0);
 
@@ -28,7 +30,7 @@ add_action( 'init', 'register_types',0);
 			'hierarchical' => false,
 			'rewrite' => array( 'slug' => 'restaurant' ),
 			'query_var' => true,
-			'supports' => array('title','thumbnail'),
+			'supports' => array('title','thumbnail','editor', 'comments'),
 			'taxonomies' => array('meniu'),
 		) );
 		
@@ -55,6 +57,28 @@ add_action( 'init', 'register_types',0);
 			'taxonomies' => array('meniu'),
 		) );
 
+		register_post_type( 'oferta', array(
+			'labels' => array(
+				"name" => __( 'Oferte'),
+				"singular_name" => __( 'Oferta'),
+				"add_new" => __( 'Add new'),
+				"add_new_item" => __( 'New Oferta'),
+				"not_found" => __( 'No Oferta defined yet'),
+				"new_item" => __( 'New Oferta' ),
+				"edit_item" => __( 'Edit Oferta' ),
+				"view_item" => __( 'View Oferta' ),
+
+			),
+			'public' => true,
+			'show_ui' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'rewrite' => array( 'slug' => 'oferta' ),
+			'query_var' => true,
+			'supports' => array('title','thumbnail','editor'),
+			'taxonomies' => array('meniu'),
+		) );
+
 		$labels = array(
 			'name' => _x( 'Meniu', 'taxonomy general name' ),
  			'singular_name' => _x( 'Meniu', 'taxonomy singular name' ),
@@ -69,7 +93,7 @@ add_action( 'init', 'register_types',0);
  			'menu_name' => __( 'Meniu' ),
 		); 	
 
- 		register_taxonomy('meniu',array('restaurant','produs'), array(
+ 		register_taxonomy('meniu',array('restaurant','produs','oferta'), array(
  			'hierarchical' => true,
  			'labels' => $labels,
  			'show_ui' => true,
@@ -133,7 +157,41 @@ add_action( 'init', 'register_one',0);
 				'produs' ,
 				'side',
 				'low'
+				);	
+		add_meta_box( 
+				'Restaurant & Meniu',
+				'Restaurant & Meniu' ,
+				'produs_taxonomies',
+				'oferta' ,
+				'side',
+				'low'
 				);		
+		add_meta_box( 
+				'Oferta',
+				'Oferta' ,
+				'produs_oferta',
+				'oferta' ,
+				'side',
+				'low'
+				);		
+
+	}
+
+	function produs_oferta(){
+
+		global $post;
+		//$is_offer = get_post_meta($post->ID, 'is_offer',true);
+		$valability = get_post_meta($post->ID, 'valability', true );
+
+
+		?>
+		<div id= "offer">
+		</br>
+			<label>Valability:</label>
+			<input type="text" value="<?php echo $valability;?>" name="valability" />
+		</div>
+
+		<?php
 
 	}
 
@@ -503,6 +561,73 @@ function delete_price(link_nr){
             		//$args = array_map('intval', $args);
             		wp_set_object_terms($post_id, $args, 'meniu');
             }
+
+
+            if (!empty($_POST['is_offer'])) {
+                    update_post_meta($post_id, 'is_offer', $_POST['is_offer']);
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                    delete_post_meta($post_id, 'is_offer');
+            } 
+            if (!empty($_POST['valability'])) {
+                    update_post_meta($post_id, 'valability', $_POST['valability']);
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                    delete_post_meta($post_id, 'valability');
+            }
+		}
+
+		if($_POST['post_type'] == 'oferta'){
+
+			 if (!empty($_POST['valability'])) {
+                    update_post_meta($post_id, 'valability', $_POST['valability']);
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                    delete_post_meta($post_id, 'valability');
+            }
+
+			if ($_POST['restaurant']) {
+            		$args = array('ID'=> $_POST['post_ID'],
+            						'post_parent'=>$_POST['restaurant']
+            			);
+            		remove_action('save_post', 'yumm_save_meta');
+            		wp_update_post($args);
+            		add_action('save_post', 'yumm_save_meta');
+
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                   $args = array('ID'=> $_POST['post_ID'],
+            						'post_parent'=>0
+            			);
+
+            		remove_action('save_post', 'yumm_save_meta');
+            		wp_update_post($args);
+            		add_action('save_post', 'yumm_save_meta');
+
+            }
+            if ($_POST['meniu']) {
+            		$args = array(
+            			$_POST['meniu']
+            			);
+            		$args = array_map('intval', $args);
+            		wp_set_object_terms($post_id, $args, 'meniu');
+
+            } else {
+                    if ($_POST['action'] == 'autosave') {
+                            return $post_id;
+                    }
+                   $args = NULL;
+            		//$args = array_map('intval', $args);
+            		wp_set_object_terms($post_id, $args, 'meniu');
+            }
 		}
 	}
 
@@ -539,28 +664,36 @@ function delete_price(link_nr){
 
 
  	}
+ 	function add_query_vars($aVars) {
+		$aVars[] = "meniu-oras"; // represents the name of the product category as shown in the URL
+		$aVars[] = "oferta-oras"; // represents the name of the product category as shown in the URL
+		return $aVars;
+	}
+	 
+	// hook add_query_vars function into query_vars
+	add_filter('query_vars', 'add_query_vars');
 	
 	add_filter('request', 'yumm_handle_request' );
 
 	function yumm_handle_request($request){
 
 		global $wp_rewrite, $wp;
-		
-		if ( isset( $request['pagename'] ) ) {
+		 // var_dump_pre($request, "START");
+		if ( isset( $request['pagename'] ) ||isset( $request['name'] )) {
 
-			$term = term_exists($request['pagename'],'oras');
+			$term = term_exists( $wp->request,'oras');
 			if ($term !== 0 && $term !== null) {
 
-				$request['oras']=$request['pagename'];
-				unset($request['pagename']);
-				unset($request['page']);
+				unset($request);
+				$request['oras']= $wp->request;
+				
 			}
 			// var_dump_pre($term);
 		}
 
-		if ( isset( $request['pagename'] ) ) {
+		if ( isset( $request['pagename'] ) || isset( $request['name'] )|| isset( $request['attachment'] )) {
 
-			$parts = explode('/',$request['pagename']);
+			$parts = explode('/', $wp->request);
 			if(count($parts) == 2){
 				$args=array(
 				  'name' => $parts[1],
@@ -571,17 +704,55 @@ function delete_price(link_nr){
 				$restaurant = get_posts($args);
 				if($restaurant){
 
+					unset($request);
 					$request['post_type'] = 'restaurant';
 					$request['name']= $parts[1];
-					unset($request['pagename']);
+					
+				}
+			}
+		}
+
+			// make rules for meniu
+			if ( isset( $request['pagename'] ) || isset( $request['name'] ) || isset( $request['attachment'] )) {
+
+				$parts = explode('/', $wp->request);
+				if(count($parts) == 2){
+					$term = term_exists($parts[1],'meniu');
+					if ($term !== 0 && $term !== null) {
+
+						unset($request);
+						$request['oras']=$parts[0];
+						$request['meniu-oras']=$parts[1];
+						$request['taxonomy']='oras';
+					}
 				}
 			}
 
-		}
 
-		// var_dump_pre($request);
+			//rules for oferta
+			if ( isset( $request['pagename'] ) || isset( $request['name'] ) || isset( $request['attachment'] )) {
+
+				$parts = explode('/', $wp->request);
+				if(count($parts) == 2){
+					if($parts[0] == 'oferte'){
+						unset($request);
+						$term = term_exists($parts[1],'oras');
+						if ($term !== 0 && $term !== null) {
+
+							$request['oferta-oras'] = $parts[1];
+
+						}
+						
+						$request['pagename']='oferte';
+					}
+				}
+			}
+
 		return $request;
 	}
+
+ 
+// hook add_query_vars function into query_vars
 
 
 	add_action( 'admin_menu', 'yumm_remove_meta_boxes' );
@@ -603,4 +774,193 @@ function delete_price(link_nr){
 	var_dump_pre($wp->request);
 }
 
+// add colums on pages
+add_action('manage_restaurant_posts_custom_column' ,'restaurant_columns_value' );
+add_action('manage_restaurant_posts_columns','restaurant_columns_name' );
+function restaurant_columns_name($cols){
+		
+		$new_cols2['oras']			= __('Oras');
+		$cols=array_insert($cols,$new_cols2,'title','after');
+		$new_cols1['meniu']			= __('Meniu');
+		$cols=array_insert($cols,$new_cols1,'oras','after');
+		
+		
+		return $cols;
+
+}
+
+function restaurant_columns_value($column){
+
+		global $post;
+		global $typenow;
+		switch ( $column ){
+			case 'meniu':
+				$taxonomy='meniu';
+				
+				$terms= get_the_terms($post->ID,$taxonomy); 				
+				// var_dump_pre($terms);
+				if (is_array($terms)) {
+					foreach($terms as $key => $term) {
+						$edit_link ="/wp-admin/edit.php?post_type=restaurant&meniu=$term->slug";
+						$terms[$key] = '<a href="'.$edit_link.'">' . $term->name . '</a>';
+					}
+				}
+				if(!empty($terms))
+					echo implode(' | ',$terms);
+				break;
+			case 'oras':
+				$taxonomy='oras';
+				
+				$terms= get_the_terms($post->ID,$taxonomy); 				
+				// var_dump_pre($terms);
+				if (is_array($terms)) {
+					foreach($terms as $key => $term) {
+						$edit_link ="/wp-admin/edit.php?post_type=restaurant&oras=$term->term_id";
+						$terms[$key] = '<a href="'.$edit_link.'">' . $term->name . '</a>';
+					}
+				}
+				if(!empty($terms))
+					echo implode(' | ',$terms);
+				break;
+				
+		}
+}
+
+add_action('manage_produs_posts_custom_column' ,'produs_columns_value' );
+add_action('manage_produs_posts_columns','produs_columns_name' );
+
+function produs_columns_name($cols){
+
+		$new_cols2['restaurant']			= __('Restaurant');
+		$cols=array_insert($cols,$new_cols2,'title','after');
+		$new_cols1['meniu']			= __('Meniu');
+		$cols=array_insert($cols,$new_cols1,'restaurant','after');
+		
+		
+		return $cols;
+
+}
+function produs_columns_value($column){
+
+		global $post;
+		global $typenow;
+		switch ( $column ){
+			case 'meniu':
+				$taxonomy='meniu';
+				
+				$terms= get_the_terms($post->ID,$taxonomy); 				
+				// var_dump_pre($terms);
+				if (is_array($terms)) {
+					foreach($terms as $key => $term) {
+						$edit_link ="/wp-admin/edit.php?post_type=produs&meniu=$term->term_id";
+						$terms[$key] = '<a href="'.$edit_link.'">' . $term->name . '</a>';
+					}
+				}
+				if(!empty($terms))
+					echo implode(' | ',$terms);
+				break;
+
+			case 'restaurant':
+				
+				// var_dump_pre($post);
+
+				if($post->post_parent != 0 )
+					$restaurant = get_post($post->post_parent);
+
+
+			//	var_dump_pre( $restaurant);
+				if($restaurant){
+
+					$link = "/wp-admin/edit.php?post_type=produs&post_parent=$restaurant->ID";
+					echo '<a href="'.$link.'">' . $restaurant->post_title . '</a>';
+				}
+				break;
+		}
+}
+
+function make_post_parent_public_qv() {
+    if ( is_admin() )
+        $GLOBALS['wp']->add_query_var( 'post_parent' );
+}
+
+add_action( 'init', 'make_post_parent_public_qv' );
+
+add_action('restrict_manage_posts','restrict_listings_by_taxonomies');
+function restrict_listings_by_taxonomies() {
+	global $typenow;
+	global $wp_query;
+	if ($typenow=='restaurant') {
+		$taxonomies = array('oras','meniu');
+		foreach($taxonomies as $taxonomy){
+			$business_taxonomy = get_taxonomy($taxonomy);
+			wp_dropdown_categories(array(
+				'show_option_all' =>  __("Show All {$business_taxonomy->label}"),
+				'taxonomy'        =>  $taxonomy,
+				'name'            =>  $taxonomy,
+				'orderby'         =>  'name',
+				'selected'        =>  $wp_query->query['term'],
+				'hierarchical'    =>  false,
+				'depth'           =>  3,
+				'show_count'      =>  false, // Show # listings in parens
+				'hide_empty'      =>  false, // Don't show businesses w/o listings
+			));
+		}
+	}
+	if ($typenow=='produs') {
+		$taxonomies = array('meniu');
+		foreach($taxonomies as $taxonomy){
+			$business_taxonomy = get_taxonomy($taxonomy);
+			wp_dropdown_categories(array(
+				'show_option_all' =>  __("Show All {$business_taxonomy->label}"),
+				'taxonomy'        =>  $taxonomy,
+				'name'            =>  $taxonomy,
+				'orderby'         =>  'name',
+				'selected'        =>  $wp_query->query['term'],
+				'hierarchical'    =>  false,
+				'depth'           =>  3,
+				'show_count'      =>  false, // Show # listings in parens
+				'hide_empty'      =>  false, // Don't show businesses w/o listings
+			));
+		}
+
+
+		$args= array(
+
+		'post_type'=>'restaurant',
+		'post_status'=>'publish',
+		);
+		$restaurants = get_posts($args);
+		$current_v = isset($_GET['post_parent'])? $_GET['post_parent']:'';
+		?>
+		 <select name="post_parent">
+        	<option value=""><?php _e('Filter By Restaurants' ); ?></option>
+        	<?php foreach($restaurants as $restaurant){
+        		  printf
+                    (
+                        '<option value="%s"%s>%s</option>',
+                        $restaurant->ID,
+                        $restaurant->ID == $current_v? ' selected="selected"':'',
+                        $restaurant->post_title
+                    );
+        	} ?>
+        </select>
+		<?php
+	}
+}
+
+add_filter('parse_query','convert_term_id_in_term_slug');
+function convert_term_id_in_term_slug($query) {
+		
+    global $pagenow;
+    $qv = &$query->query_vars;
+    
+    if ($pagenow=='edit.php' && isset($qv['oras'])) {
+		$term = get_term_by('id',$qv['oras'],'oras');
+		$qv['oras'] = $term->slug;
+    }
+    if ($pagenow=='edit.php' && isset($qv['meniu'])) {
+		$term = get_term_by('id',$qv['meniu'],'meniu');
+		$qv['meniu'] = $term->slug;
+    }
+}
 ?>

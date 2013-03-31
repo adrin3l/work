@@ -1,6 +1,7 @@
   var $jq = jQuery.noConflict();
+
 $jq(document).ready(function(){
-  var currentPosition = 0;
+ var currentPosition = 0;
   var slideWidth = 560;
   var slides = $jq('.slide');
   var numberOfSlides = slides.length;
@@ -12,7 +13,7 @@ $jq(document).ready(function(){
   slides
     .wrapAll('<div id="slideInner"></div>')
     // Float left to display horizontally, readjust .slides width
-	.css({
+  .css({
       'float' : 'left',
       'width' : slideWidth
     });
@@ -32,9 +33,9 @@ $jq(document).ready(function(){
   $jq('.control')
     .bind('click', function(){
     // Determine new position
-	currentPosition = ($jq(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
+  currentPosition = ($jq(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
     
-	// Hide / show controls
+  // Hide / show controls
     manageControls(currentPosition);
     // Move slideInner using margin-left
     $jq('#slideInner').animate({
@@ -45,10 +46,11 @@ $jq(document).ready(function(){
   // manageControls: Hides and Shows controls depending on currentPosition
   function manageControls(position){
     // Hide left arrow if position is first slide
-	if(position==0){ $jq('#leftControl').hide() } else{ $jq('#leftControl').show() }
-	// Hide right arrow if position is last slide
+  if(position==0){ $jq('#leftControl').hide() } else{ $jq('#leftControl').show() }
+  // Hide right arrow if position is last slide
     if(position==numberOfSlides-1){ $jq('#rightControl').hide() } else{ $jq('#rightControl').show() }
-  }	
+  } 
+
 
    $jq('#gaseste').bind('click', function(){ 
 
@@ -56,9 +58,41 @@ $jq(document).ready(function(){
       var meniu = $jq('#meniu').val();
       var pathname = window.location.host;
 
-      alert(pathname);
-      alert(oras);
-      alert(meniu);
+      if(oras == ''){
+
+        alert('Va rugam alegeti un oras!');
+        return false;
+      }
+      
+
+      var link = 'http://' + pathname + '/' + oras + '/' +meniu;
+
+     // alert(link);
+      window.location = link;
+      
 
    });
+
+    $jq('a.m_link').bind('click', function(){ 
+
+      // alert($jq(this).attr('meniu'));
+
+      var meniu =$jq(this).attr('meniu');
+      var restaurant = $jq('#restaurant_id').attr('restaurant');
+      // alert(restaurant);
+
+      var data = {
+                                                                                                                                                              
+            action: 'generate_produse_callback',
+            meniu : meniu,      
+            restaurant : restaurant                                                                                                                                                                                                                               
+      }
+
+      $jq.post( ajaxurl, data, function( response ) {
+            $jq('#content-produs').html('');
+            $jq('#content-produs').html(response);
+            return false;
+      });
+   return false;
+  });
 });

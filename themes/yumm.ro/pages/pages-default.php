@@ -22,9 +22,11 @@ get_header();
 
 cfct_loop();
 
-comments_template();
+//comments_template();
 
 get_sidebar();
+//dynamic_sidebar('Secondary Sidebar');
+get_sidebar('home_sidebar');
 get_footer();
 
 ?>

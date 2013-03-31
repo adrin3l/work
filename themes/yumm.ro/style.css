@@ -39,35 +39,35 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 body{
     background:#f3f3f3;
@@ -151,7 +151,7 @@ div#main-menu li {
     text-decoration: none;
     color: #0478AC;
     font-family: Myriad Pro, cursive;
-    font-size:1.5em;
+    font-size:1.2em;
     padding:0.3em;
     margin:10px;
 }
@@ -242,7 +242,7 @@ div#unde,div#ce{
     margin-left:20px;
 }
 
-div#cine-suntem{
+div#page-content{
     float:left;
     width:60%;
     display: inline;
@@ -261,7 +261,7 @@ h2{
     font-weight: bold;
 }
 
-p.normal{
+#page-content p{
     color:white;
     font-size:1.4em;
     margin-top:20px;
@@ -449,27 +449,27 @@ div#slider{
 }
 
 
-div#pizza, div#chinese, div#shaorma, div#logo-footer{
+div.col {
     width:17%;
     float:left;
 }
 
-div#pizza ul, div#chinese ul , div#shaorma ul{
+div.col ul {
     padding-left:0;
     padding-right: 10px;
 }
 
-div#pizza li, div#chinese li , div#shaorma li{
+div.col li{
     list-style-type: none;
 }
 
-div#pizza a, div#chinese a , div#shaorma a{
+div.col a {
     text-decoration:none;
     font-family: Myriad Pro, cursive;
     color:#3f3f3f;
 }
 
-div#pizza a:hover, div#chinese a:hover , div#shaorma a:hover{
+div.col a:hover{
     text-decoration: underline;
 }
 
@@ -538,6 +538,9 @@ h4.oras{
 
 ul.bucatarie{
     list-style-type: none;
+    float: left;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 ul#col1{
@@ -567,11 +570,15 @@ div.instance{
     font-family: Myriad Pro, cursive;
     background: white;
     padding: 5px;
-    height: 100px;
+    height: 100%;
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
 }
-
+div.instance:after {
+    clear: both;
+    content: "";
+    display: block;
+}
 div.instance:hover{
     box-shadow: 0 0 5px #ccc;
 }
@@ -580,7 +587,11 @@ div.img,div.date-restaurant,div.cost, div.telefon,div.program{
     float:left;
     height: 95px;
 }
-
+div.date-restaurant:after{
+    display: block;
+    content: '';
+    clear: both;
+}
 div.cost, div.telefon,div.program{
     width:15%;
 }
@@ -634,6 +645,7 @@ img.slice{
 div.date-restaurant{
     width:35%;
     padding-left: 10px;
+    height: 100%;
 }
 
 h3{
@@ -683,7 +695,7 @@ div#meniu-delivery li{
     padding-right:10px;
 }
 
-div.pizza{
+div.produs{
     float:left;
     width:45%;
     margin-top:20px;
@@ -693,7 +705,7 @@ p.descriere{
     margin-bottom: 40px;
 }
 
-h3.pizza-nume{
+h3.nume-produs{
     color:#000;
 }
 
@@ -748,4 +760,122 @@ div#despre{
     width:940px;
     margin-left: 10px;
     margin-top:10px;
+}
+#right-corner {
+    position: fixed; /* Make sure you can align it exactly */
+    cursor: pointer; /* Change the cursor on mouse over */
+    top: 0px; /* Change to 100px to put it under a 100px banner */
+    right: 0px; /* Change to 100px to put it left of a 100px right-side bar */
+    z-index: 99999; /* make sure it is the top element always */
+}
+#lightbox {
+    position: absolute;
+        font-size: 18px;
+        padding: 20px;
+    top: 0;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    background: #fff;
+    z-index: 1001;
+    display: none;
+}
+#lightbox-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    filter: alpha(opacity=75);
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    opacity: 0.75;
+    z-index: 1000;
+    display: none;
+}
+#oferta{
+    background: #fff;
+    padding: 10px;
+}
+#oferta:after{
+    display:block;
+    content: '';
+    clear:both;
+}
+#oferta h2#slid{margin-top: 5px;}
+#porcusor{
+    float: left;
+    padding-right: 10px;
+}
+
+#oferta > ul {
+    background: none repeat scroll 0 0 #ECECEC;
+}
+#oferta >ul li {
+    display: inline-block;
+    padding: 10px 0 10px 10px;
+    width: 146px;
+}
+#oferta >ul li:hover{
+    background: #FF144B;
+}
+#oferta >ul li:hover a{
+    color: #fff;
+}
+#oferta > ul li a {
+    color: #000000;
+    font-family: Myriad Pro,cursive;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+p#oferte {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+#oferta .item {
+    border-bottom: 1px dashed #AAAAAA;
+    float: left;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    width: 439px;
+}
+#oferta .item.second_col {
+    float: right;
+    padding-left: 60px;
+}
+#oferta .item  img{
+    width: 439px;
+    height: 223px;
+}
+
+p.oferta-text {
+    background: none repeat scroll 0 0 #FF144B;
+    clear: left;
+    color: #FFFFFF;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px;
+}
+
+p.telefon {
+    background: linear-gradient(to bottom, #FFFFFF 1%, #E6E6E6 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    bottom: 20px;
+    color: #FF144B;
+    font-size: 1.4em;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    width: 180px;
 }

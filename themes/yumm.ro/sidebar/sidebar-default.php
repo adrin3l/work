@@ -20,7 +20,7 @@ if (CFCT_DEBUG) { cfct_banner(__FILE__); }
 
 ?>
 
-<div id="sidebar">
+
 	<div id="primary-sidebar">
 <?php
 $post = $orig_post;
@@ -42,23 +42,4 @@ if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Primary Sidebar') 
 }
 ?>
 	</div><!--#primary-sidebar-->
-	<div id="secondary-sidebar">
-<?php
-if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Secondary Sidebar') ) { 
-?>
-		<div class="widget">
-			<h2 class="title">Search</h2>
-			<?php cfct_form('search'); ?>
-		</div><!--.widget-->
-		<div class="widget">
-			<h2 class="title">Tags</h2>
-			<?php wp_tag_cloud('smallest=10&largest=18&unit=px'); ?>
-		</div><!--.widget-->
-		<?php wp_register('<p>', '</p>'); ?> 
-		<p><?php wp_loginout(); ?></p>
-
-<?php
-}
-?>
-	</div><!--#secondary-sidebar-->
-</div><!--#sidebar-->
+	

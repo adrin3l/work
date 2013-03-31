@@ -27,6 +27,12 @@ include_once(CFCT_PATH.'carrington-core/carrington.php');
 include_once(CFCT_PATH.'functions/sidebars.php');
 include_once(CFCT_PATH.'functions/registrations.php');
 include_once(CFCT_PATH.'functions/helper.php');
+
+include_once(CFCT_PATH.'functions/how-works.php');
+include_once(CFCT_PATH.'functions/slider.php');
+
+
+
 register_nav_menus( array(
     'primary' => 'Primary' ,
     'user_menu' =>  'Header'

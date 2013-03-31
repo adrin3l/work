@@ -18,9 +18,8 @@
 if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); }
 if (CFCT_DEBUG) { cfct_banner(__FILE__); }
 
-_e('Proudly powered by <a href="http://wordpress.org/" title="WordPress" rel="generator">WordPress</a> and <a href="http://carringtontheme.com" title="Carrington theme for WordPress">Carrington</a>.', 'carrington-jam'); 
-
 wp_footer();
+$template_url = get_bloginfo('template_url');
 
 if (CFCT_DEBUG) {
 ?>
@@ -31,8 +30,48 @@ if (CFCT_DEBUG) {
 }
 
 ?>
-<div id="footer">
-</div>
+	<div id="footer">
+		<p id="comanda">Comanda</p>
+		<div id="coloane">
+			<?php $link_categories = get_terms('link_category');
+
+				foreach($link_categories as $link_category){
+
+					?>
+					<div  class= "col">
+						<ul>
+						<?php
+							$args = array('category'=>$link_category->term_id,
+								 'category_before'  => '',
+								 'category_after'   => '',
+								 'title_li'         => '',
+							    
+							    'categorize' 		=>0
+								);
+							wp_list_bookmarks($args);
+
+						?>
+						</ul>
+					</div>	
+
+
+					
+						<?php
+
+				}
+			?>
+		
+		<div id="logo-footer" class="col">
+                        <img alt="logo din footer" src="<?php echo $template_url;?>/images/yumm-footer.png">
+                        <p>Yumm.ro este un concept care trebuie sa umple acest spatiu indiferent de ce voi scrie aici.</p>
+                        <p>Yumm.ro este un concept care trebuie sa umple acest spatiu indiferent de ce voi scrie aici.</p>
+                        <p>Yumm.ro este un concept care trebuie sa umple acest spatiu indiferent de ce voi scrie aici.</p>
+                        <br>
+                        <p id="copyright">Copyright (c)Yumm.ro 2013. <a href="#">Termeni si conditii.</a></p>
+                    </div>
+
+                    </div>
+	</div>
 </div>
 </body>
 </html>
